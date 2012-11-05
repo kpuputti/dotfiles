@@ -1,0 +1,9 @@
+{
+    "tab_size": 4,
+    "translate_tabs_to_spaces": true,
+    "rulers": [80, 120],
+    "indent_to_bracket": true,
+    "wrap_width": 80,
+    "highlight_line": true,
+    "highlight_modified_tabs": true
+}

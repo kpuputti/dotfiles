@@ -1,0 +1,19 @@
+[
+    // Make tab switching behave as in the browser
+    { "keys": ["ctrl+tab"], "command": "next_view" },
+    {"keys": ["ctrl+shift+tab"], "command": "prev_view" },
+
+    // Use a different shortcut for toggling the console
+    {
+        "keys": ["ctrl+shift+l"],
+        "command": "show_panel",
+        "args": {
+            "panel": "console",
+            "toggle": true
+        }
+    },
+
+    // Delete trailing whitespace
+    { "keys": ["ctrl+shift+t"], "command": "delete_trailing_spaces" }
+
+]

@@ -1,0 +1,11 @@
+{
+	"auto_upgrade_last_run": 1352147086,
+	"installed_packages":
+	[
+		"Package Control",
+		"SideBarEnhancements",
+		"SublimeCodeIntel",
+		"SublimeLinter",
+		"TrailingSpaces"
+	]
+}
