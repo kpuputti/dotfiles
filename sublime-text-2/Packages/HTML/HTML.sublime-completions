@@ -59,7 +59,7 @@
 		{ "trigger": "pre", "contents": "<pre>$1</pre>" },
 		{ "trigger": "span", "contents": "<span>$1</span>" },
 		{ "trigger": "samp", "contents": "<samp>$1</samp>" },
-		{ "trigger": "script", "contents": "<script type=\"${1:text/javascript}\">$0</script>" },
+		{ "trigger": "script", "contents": "<script src=\"${1}\">$0</script>" },
 		{ "trigger": "style", "contents": "<style type=\"${1:text/css}\">$0</style>" },
 		{ "trigger": "select", "contents": "<select>$1</select>" },
 		{ "trigger": "small", "contents": "<small>$1</small>" },
