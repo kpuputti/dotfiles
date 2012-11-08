@@ -1,8 +1,9 @@
 {
-	"auto_upgrade_last_run": 1352276347,
+	"auto_upgrade_last_run": 1352362668,
 	"installed_packages":
 	[
 		"Package Control",
+		"SCSS",
 		"SideBarEnhancements",
 		"SublimeCodeIntel",
 		"SublimeLinter",
