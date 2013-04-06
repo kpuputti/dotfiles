@@ -16,3 +16,4 @@ Modes/config for:
 - yasnippet
 - flymake
 - flyspell
+- git gutter
