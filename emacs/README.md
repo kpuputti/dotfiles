@@ -17,3 +17,4 @@ Modes/config for:
 - flymake
 - flyspell
 - git gutter
+- starter-kit-bindings
