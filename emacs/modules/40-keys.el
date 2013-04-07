@@ -4,3 +4,6 @@
 (when window-system
   (global-unset-key (kbd "C-z"))
   (global-unset-key (kbd "C-x C-z")))
+
+(global-unset-key (kbd "C-<left>"))
+(global-unset-key (kbd "C-<right>"))

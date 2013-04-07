@@ -27,3 +27,6 @@
 (add-hook 'after-change-major-mode-hook 'fci-mode)
 (setq fci-rule-column 80)
 (setq fci-rule-color "#073642") ; Match the theme colors.
+
+;; Whitespace mode
+(global-whitespace-mode 1)
