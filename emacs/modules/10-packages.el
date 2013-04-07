@@ -16,7 +16,7 @@
 ;; Define required packages.
 ;;
 ;; Emacs Starter Kit: https://github.com/technomancy/emacs-starter-kit
-;; Solarized color theme: https://github.com/sellout/emacs-color-theme-solarized
+;; Solarized color theme: https://github.com/bbatsov/solarized-emacs
 ;; Smooth scrolling: http://emacs.wordpress.com/2007/09/10/smooth-scrolling/
 ;; Clojure mode: https://github.com/technomancy/clojure-mode
 ;; Markdown mode: http://jblevins.org/projects/markdown-mode/
@@ -25,7 +25,7 @@
 (defvar my-packages '(starter-kit
                       starter-kit-lisp
                       starter-kit-bindings
-                      color-theme-solarized
+                      solarized-theme
                       smooth-scrolling
                       clojure-mode
                       markdown-mode

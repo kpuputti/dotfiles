@@ -8,10 +8,6 @@
 ;; Font
 (set-default-font "Source Code Pro")
 
-;; Shell colors
-;; TODO: enable when actually needed
-;(require 'ansi-color)
-
 ;; Line highlight
 (global-hl-line-mode 1)
 

@@ -18,3 +18,4 @@ Modes/config for:
 - flyspell
 - git gutter
 - visible space/tab colors in whitespace-mode
+- shell env
