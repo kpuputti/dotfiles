@@ -4,7 +4,10 @@
 
 ;; Add package archives.
 (add-to-list 'package-archives
-  '("marmalade" . "http://marmalade-repo.org/packages/") t)
+             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
 (package-initialize)
 
 (when (not package-archive-contents)
@@ -18,13 +21,15 @@
 ;; Clojure mode: https://github.com/technomancy/clojure-mode
 ;; Markdown mode: http://jblevins.org/projects/markdown-mode/
 ;; Fill column indicator: http://www.emacswiki.org/emacs-en/FillColumnIndicator
+;; Scala mode 2: https://github.com/hvesalai/scala-mode2
 (defvar my-packages '(starter-kit
                       starter-kit-lisp
                       color-theme-solarized
                       smooth-scrolling
                       clojure-mode
                       markdown-mode
-                      fill-column-indicator))
+                      fill-column-indicator
+                      scala-mode2))
 
 ;; Install missing packages.
 (dolist (p my-packages)
