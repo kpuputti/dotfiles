@@ -24,6 +24,7 @@
 ;; Scala mode 2: https://github.com/hvesalai/scala-mode2
 (defvar my-packages '(starter-kit
                       starter-kit-lisp
+                      starter-kit-bindings
                       color-theme-solarized
                       smooth-scrolling
                       clojure-mode
