@@ -5,5 +5,5 @@
   (global-unset-key (kbd "C-z"))
   (global-unset-key (kbd "C-x C-z")))
 
-(global-unset-key (kbd "C-<left>"))
-(global-unset-key (kbd "C-<right>"))
+(global-set-key (kbd "C-<right>") 'forward-word)
+(global-set-key (kbd "C-<left>") 'backward-word)

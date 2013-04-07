@@ -9,12 +9,13 @@ heavily inspired by @akheron's
 
 Modes/config for:
 
-- JavaScript + JSHint
+- JavaScript
+- CoffeeScript
 - CSS
 - SCSS
 - LaTeX (?)
 - yasnippet
-- flymake
+- flymake (JSHint, pyflakes)
 - flyspell
 - git gutter
 - visible space/tab colors in whitespace-mode
