@@ -17,4 +17,4 @@ Modes/config for:
 - flymake
 - flyspell
 - git gutter
-- starter-kit-bindings
+- visible space/tab colors in whitespace-mode
