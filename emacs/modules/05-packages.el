@@ -22,6 +22,7 @@
 ;; Markdown mode: http://jblevins.org/projects/markdown-mode/
 ;; Fill column indicator: http://www.emacswiki.org/emacs-en/FillColumnIndicator
 ;; Scala mode 2: https://github.com/hvesalai/scala-mode2
+;; YASnippet: https://github.com/capitaomorte/yasnippet
 (defvar my-packages '(starter-kit
                       starter-kit-lisp
                       starter-kit-bindings
@@ -30,7 +31,8 @@
                       clojure-mode
                       markdown-mode
                       fill-column-indicator
-                      scala-mode2))
+                      scala-mode2
+                      yasnippet))
 
 ;; Install missing packages.
 (dolist (p my-packages)
