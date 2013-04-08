@@ -23,6 +23,7 @@
 ;; Fill column indicator: http://www.emacswiki.org/emacs-en/FillColumnIndicator
 ;; Scala mode 2: https://github.com/hvesalai/scala-mode2
 ;; YASnippet: https://github.com/capitaomorte/yasnippet
+;; git-gutter-fringe: https://github.com/syohex/emacs-git-gutter-fringe
 (defvar my-packages '(starter-kit
                       starter-kit-lisp
                       starter-kit-bindings
@@ -32,7 +33,8 @@
                       markdown-mode
                       fill-column-indicator
                       scala-mode2
-                      yasnippet))
+                      yasnippet
+                      git-gutter-fringe))
 
 ;; Install missing packages.
 (dolist (p my-packages)

@@ -15,6 +15,4 @@ Modes/config for:
 - SCSS
 - LaTeX (?)
 - flymake (JSHint, pyflakes)
-- flyspell
-- git gutter
 - shell env
