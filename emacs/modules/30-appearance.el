@@ -7,6 +7,7 @@
 
 ;; Font
 (set-default-font "Source Code Pro")
+(set-face-attribute 'default nil :height 110)
 
 ;; Line highlight
 (global-hl-line-mode 1)
@@ -26,3 +27,4 @@
 
 ;; Whitespace mode
 (global-whitespace-mode 1)
+(setq whitespace-style (quote (face tab-mark trailing)))
