@@ -27,4 +27,5 @@
 
 ;; Whitespace mode
 (global-whitespace-mode 1)
+; http://www.gnu.org/software/emacs/manual/html_node/emacs/Useless-Whitespace.html
 (setq whitespace-style (quote (face tab-mark trailing)))
