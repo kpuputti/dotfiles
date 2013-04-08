@@ -4,7 +4,7 @@
 ;; FIXME: Use relative path from this file's location.
 (setq default-directory "~/dev/projects/dotfiles/emacs")
 
-;(add-to-list 'load-path "lib")
+(add-to-list 'load-path "lib")
 
 ;; Load all files from the `modules` directory.
 (dolist (file (directory-files "modules" t ".elc?$"))
