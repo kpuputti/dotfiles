@@ -24,6 +24,8 @@
 ;; Scala mode 2: https://github.com/hvesalai/scala-mode2
 ;; YASnippet: https://github.com/capitaomorte/yasnippet
 ;; git-gutter-fringe: https://github.com/syohex/emacs-git-gutter-fringe
+;; SCSS mode: https://github.com/antonj/scss-mode
+;; flymake-sass: https://github.com/purcell/flymake-sass
 (defvar my-packages '(starter-kit
                       starter-kit-lisp
                       starter-kit-bindings
@@ -34,7 +36,9 @@
                       fill-column-indicator
                       scala-mode2
                       yasnippet
-                      git-gutter-fringe))
+                      git-gutter-fringe
+                      scss-mode
+                      flymake-sass))
 
 ;; Install missing packages.
 (dolist (p my-packages)
