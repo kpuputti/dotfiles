@@ -5,19 +5,28 @@ Built on top of
 heavily inspired by @akheron's
 [dotemacs](https://github.com/akheron/dotemacs).
 
-Requirements:
+## Requirements
+
+Flymake tmp directory:
+
+    mkdir ~/.emacs.d/tmp
+
+Command line tools for flymake:
 
     sudo npm install -g jshint csslint
-    sudo gem install sass
+    sudo gem install sass # or compass
 
 ## TODO
 
 - JavaScript
   - js2-mode (improved version from Melpa)
-  - js2-refactor ?
+    - https://github.com/mooz/js2-mode
+  - js2-refactor
+    - https://github.com/magnars/js2-refactor.el
   - js2-highlight-vars-mode
     - http://mihai.bazon.net/projects/editing-javascript-with-emacs-js2-mode/js2-highlight-vars-mode
   - ac-js2 for autocompletion
+    - https://github.com/ScottyB/ac-js2
   - jshint through flymake (with .jshintrc file support?)
   - proper indentation (espresso?)
   - js2-imenu-extras ?
@@ -36,3 +45,5 @@ Requirements:
   - https://github.com/editorconfig/editorconfig-emacs
 - set up fuzzy format to detect indentation settings
   - http://www.emacswiki.org/emacs/FuzzyFormat
+- check out kite (WebKit inspector front end for Emacs)
+  - https://github.com/jscheid/kite
