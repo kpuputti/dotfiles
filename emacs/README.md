@@ -19,16 +19,14 @@ Command line tools for flymake:
 ## TODO
 
 - JavaScript
-  - configure js2-mode
   - js2-refactor
     - https://github.com/magnars/js2-refactor.el
-  - js2-highlight-vars-mode
-    - http://mihai.bazon.net/projects/editing-javascript-with-emacs-js2-mode/js2-highlight-vars-mode
   - ac-js2 for autocompletion
     - https://github.com/ScottyB/ac-js2
   - jshint through flymake (with .jshintrc file support?)
-  - proper indentation (espresso?)
   - js2-imenu-extras ?
+  - fix yasnippets in js2-mode
+
 - proper html mode with support for HTML5 and embedded css/js
   - https://github.com/fgallina/multi-web-mode
   - http://stackoverflow.com/questions/1082474/authoring-html5-in-emacs
