@@ -26,6 +26,7 @@
 ;; git-gutter-fringe: https://github.com/syohex/emacs-git-gutter-fringe
 ;; SCSS mode: https://github.com/antonj/scss-mode
 ;; flymake-sass: https://github.com/purcell/flymake-sass
+;; js2-mode: https://github.com/mooz/js2-mode
 (defvar my-packages '(starter-kit
                       starter-kit-lisp
                       starter-kit-bindings
@@ -38,7 +39,8 @@
                       yasnippet
                       git-gutter-fringe
                       scss-mode
-                      flymake-sass))
+                      flymake-sass
+                      js2-mode))
 
 ;; Install missing packages.
 (dolist (p my-packages)
