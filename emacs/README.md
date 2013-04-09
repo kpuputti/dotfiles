@@ -19,8 +19,7 @@ Command line tools for flymake:
 ## TODO
 
 - JavaScript
-  - js2-mode (improved version from Melpa)
-    - https://github.com/mooz/js2-mode
+  - configure js2-mode
   - js2-refactor
     - https://github.com/magnars/js2-refactor.el
   - js2-highlight-vars-mode
