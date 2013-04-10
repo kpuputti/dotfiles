@@ -14,33 +14,26 @@
   (package-refresh-contents))
 
 ;; Define required packages.
-;;
-;; Emacs Starter Kit: https://github.com/technomancy/emacs-starter-kit
-;; Solarized color theme: https://github.com/bbatsov/solarized-emacs
-;; Smooth scrolling: http://emacs.wordpress.com/2007/09/10/smooth-scrolling/
-;; Clojure mode: https://github.com/technomancy/clojure-mode
-;; Markdown mode: http://jblevins.org/projects/markdown-mode/
-;; Fill column indicator: http://www.emacswiki.org/emacs-en/FillColumnIndicator
-;; Scala mode 2: https://github.com/hvesalai/scala-mode2
-;; YASnippet: https://github.com/capitaomorte/yasnippet
-;; git-gutter-fringe: https://github.com/syohex/emacs-git-gutter-fringe
-;; SCSS mode: https://github.com/antonj/scss-mode
-;; flymake-sass: https://github.com/purcell/flymake-sass
-;; js2-mode: https://github.com/mooz/js2-mode
-(defvar my-packages '(starter-kit
+(defvar my-packages '(
+                      starter-kit ; https://github.com/technomancy/emacs-starter-kit
                       starter-kit-lisp
                       starter-kit-bindings
-                      solarized-theme
-                      smooth-scrolling
-                      clojure-mode
-                      markdown-mode
-                      fill-column-indicator
-                      scala-mode2
-                      yasnippet
-                      git-gutter-fringe
-                      scss-mode
-                      flymake-sass
-                      js2-mode))
+                      solarized-theme ; https://github.com/bbatsov/solarized-emacs
+                      smooth-scrolling ; http://emacs.wordpress.com/2007/09/10/smooth-scrolling/
+                      clojure-mode ; https://github.com/technomancy/clojure-mode
+                      markdown-mode ; http://jblevins.org/projects/markdown-mode/
+                      fill-column-indicator ; http://www.emacswiki.org/emacs-en/FillColumnIndicator
+                      scala-mode2 ; https://github.com/hvesalai/scala-mode2
+                      yasnippet ; https://github.com/capitaomorte/yasnippet
+                      git-gutter-fringe ; https://github.com/syohex/emacs-git-gutter-fringe
+                      scss-mode ; https://github.com/antonj/scss-mode
+                      flycheck ; https://github.com/lunaryorn/flycheck
+                      js2-mode ; https://github.com/mooz/js2-mode
+                      js2-refactor ; https://github.com/magnars/js2-refactor.el
+                      ac-js2 ; https://github.com/ScottyB/ac-js2
+                      json-mode ; https://github.com/joshwnj/json-mode
+                      coffee-mode ; https://github.com/defunkt/coffee-mode
+                      ))
 
 ;; Install missing packages.
 (dolist (p my-packages)
