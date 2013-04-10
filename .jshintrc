@@ -1,23 +1,27 @@
 {
-    // enforcing options
-
-    "camelcase": true,
-    "curly": true,
+    "bitwise": true,
     "eqeqeq": true,
     "forin": true,
     "immed": true,
     "indent": 4,
     "latedef": true,
-    "newcap": true,
     "noarg": true,
+    "noempty": true,
     "nonew": true,
-    "quotmark": "single",
-    "undef": true,
-    "unused": true,
-    "strict": true,
-    "trailing": true,
+    "plusplus": true,
+    "quotmark": true,
+    "lastsemic": true,
+    "laxcomma": true,
 
-    // environment
+    "browser": true,
+    "devel": true,
+    "node": true,
+    "jquery": true,
 
-    "devel": true
+    "globals": {
+        "define": false,
+        "require": false,
+        "_": false,
+        "Backbone": false
+    }
 }
