@@ -33,11 +33,11 @@ alias les="sl"
 
 # export EDITOR=
 
-DEV_LIB=~/dev/lib
+DEV_LIB=$HOME/dev/lib
 
 export ANDROID_HOME=$DEV_LIB/android-sdk-linux
 
-HOME_BIN=~/bin
+HOME_BIN=$HOME/bin
 ANDROID_TOOLS=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 SBT=$DEV_LIB/sbt/bin
 
