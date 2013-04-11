@@ -73,6 +73,9 @@ console.log(f1, f2, f3);
 if (false)
   alert('bad indent');
 
+if (true)
+	alert('lol, tabs');
+
 // LATEDEF
 
 late();
