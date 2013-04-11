@@ -13,11 +13,22 @@ Command line tools for flycheck:
     sudo gem install sass # or compass
     sudo pip install flake8
 
-## TODO
+## Updating packages
 
-- organize modules
-  - init.el defined packages, install them, loads specified modules
-  - no numbers in file names for defining the order
+From [MELPA docs](http://melpa.milkbox.net/#installing):
+
+    package.el now includes a mechanism to upgrade packages. After
+    running package-list-packages, type U (mark Upgradable packages)
+    and then x (eXecute the installs and deletions). When it’s done
+    installing all the packages it will ask if you want to delete the
+    obsolete packages and so you can hit y (Yes).
+
+    If you run into a problem installing or upgrading, you may need to
+    go into your ~/.emacs.d/elpa/ directory and delete packages that
+    are installed multiple times. This can happen when the install
+    times out.
+
+## TODO
 
 - JavaScript
   - js2-refactor
@@ -27,7 +38,8 @@ Command line tools for flycheck:
   - js2-imenu-extras ?
   - fix yasnippets in js2-mode
 
-- configure flycheck
+- enable json-mode once the repo works
+- try fixing compilation errors in Makefile
 - proper html mode with support for HTML5 and embedded css/js
   - https://github.com/fgallina/multi-web-mode
   - http://stackoverflow.com/questions/1082474/authoring-html5-in-emacs
@@ -35,8 +47,6 @@ Command line tools for flycheck:
 - imenu ?
 - set up server + possible shell aliases
 - set up saving/restoring projects
-- Makefile for compiling all .el files to .elc
-- Use git submodules for packages not found in the repos
 - add support for .editorconfig
   - https://github.com/editorconfig/editorconfig-emacs
 - set up fuzzy format to detect indentation settings
