@@ -1,19 +1,14 @@
 ;;; General
 
-;; Quit confirmation
+;; Confirm quit.
 (setq confirm-kill-emacs 'y-or-n-p)
 
-;; Clipboard support
+;; Enable clipboard support.
 (setq x-select-enable-clipboard t)
 
-;; Backups
-(setq
-  backup-by-copying t
-  delete-old-versions t
-  kept-new-versions 6
-  kept-old-versions 2
-  version-control t)
+;; Make backups also for files in version control.
+(setq vc-make-backup-files t)
 
-;; Aliases
+;; Define aliases.
 (defalias 'qrr 'query-replace-regexp)
 (defalias 'dtr 'delete-trailing-whitespace)

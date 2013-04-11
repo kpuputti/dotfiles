@@ -5,7 +5,18 @@
 (setq default-directory "~/dev/projects/dotfiles/emacs")
 
 (add-to-list 'load-path "lib")
+(add-to-list 'load-path "modules")
 
-;; Load all files from the `modules` directory.
-(dolist (file (directory-files "modules" t ".elc?$"))
-  (load (file-name-sans-extension file)))
+;; Load files from the `modules` directory in a specific order.
+(load "setup-package")
+(load "setup-general")
+(load "setup-appearance")
+(load "setup-fill-column-indicator")
+(load "setup-keybindings")
+(load "setup-yasnippet")
+(load "setup-flycheck")
+(load "setup-git-gutter")
+(load "setup-markdown")
+(load "setup-scss")
+(load "setup-js")
+(load "setup-json")

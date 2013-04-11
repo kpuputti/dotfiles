@@ -1,4 +1,4 @@
-;;; Keys
+;;; Keybindings
 
 ;; Prevent suspending or iconifying when running in GUI mode.
 (when window-system
