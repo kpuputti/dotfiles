@@ -15,8 +15,8 @@ alias cd,,,,,,,="cd ../../../../../../.."
 alias llh="ll -h"
 alias lah="la -h"
 
-# alias gitg='gitg --all'
 # alias share-folder='python -mSimpleHTTPServer 8080'
+
 alias dev-browser='chromium-browser \
     --disable-web-security \
     --disable-application-cache \
@@ -26,6 +26,14 @@ alias dev-browser='chromium-browser \
     --media-cache-size=0'
 
 alias mvn="mvn-color"
+
+## Functions
+
+function git-publish() {
+    # Merge changes from master branch into the gh-pages branch and
+    # push them to the origin gh-pages branch.
+    git checkout gh-pages && git merge master && git push origin gh-pages && git checkout master
+}
 
 ## Exports
 
