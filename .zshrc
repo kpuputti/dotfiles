@@ -25,6 +25,8 @@ alias dev-browser='chromium-browser \
     --enable-memory-info \
     --media-cache-size=0'
 
+alias mvn="mvn-color"
+
 ## Exports
 
 # export EDITOR=
