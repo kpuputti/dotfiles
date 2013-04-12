@@ -31,7 +31,7 @@
                       js2-mode ; https://github.com/mooz/js2-mode
                       js2-refactor ; https://github.com/magnars/js2-refactor.el
                       ac-js2 ; https://github.com/ScottyB/ac-js2
-                      ;json-mode ; https://github.com/joshwnj/json-mode
+                      json-mode ; https://github.com/joshwnj/json-mode
                       coffee-mode ; https://github.com/defunkt/coffee-mode
                       ))
 
