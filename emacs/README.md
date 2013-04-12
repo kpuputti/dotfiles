@@ -38,7 +38,6 @@ From [MELPA docs](http://melpa.milkbox.net/#installing):
   - js2-imenu-extras ?
   - fix yasnippets in js2-mode
 
-- enable json-mode once the repo works
 - try fixing compilation errors in Makefile
 - proper html mode with support for HTML5 and embedded css/js
   - https://github.com/fgallina/multi-web-mode
