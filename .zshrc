@@ -17,13 +17,13 @@ alias lah="la -h"
 
 # alias share-folder='python -mSimpleHTTPServer 8080'
 
-alias dev-browser='chromium-browser \
-    --disable-web-security \
-    --disable-application-cache \
-    --disk-cache-size=0 \
-    --enable-devtools-experiments \
-    --enable-memory-info \
-    --media-cache-size=0'
+# alias dev-browser='chromium-browser \
+#     --disable-web-security \
+#     --disable-application-cache \
+#     --disk-cache-size=0 \
+#     --enable-devtools-experiments \
+#     --enable-memory-info \
+#     --media-cache-size=0'
 
 alias mvn="mvn-color"
 
