@@ -12,8 +12,8 @@ alias cd,,,,,="cd ../../../../.."
 alias cd,,,,,,="cd ../../../../../.."
 alias cd,,,,,,,="cd ../../../../../../.."
 
-alias llh="ll -h"
-alias lah="la -h"
+alias llh="ll --human-readable"
+alias lah="la --human-readable"
 
 # alias share-folder='python -mSimpleHTTPServer 8080'
 
@@ -33,6 +33,14 @@ function git-publish() {
     # Merge changes from master branch into the gh-pages branch and
     # push them to the origin gh-pages branch.
     git checkout gh-pages && git merge master && git push origin gh-pages && git checkout master
+}
+
+function update() {
+    sudo apt-get update
+    sudo apt-get upgrade
+    sudo gem update
+    sudo npm update --global
+    # TODO: update pip (+ easy_install ?) packages
 }
 
 ## Exports
