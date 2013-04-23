@@ -26,6 +26,7 @@ alias lah="la --human-readable"
 #     --media-cache-size=0'
 
 alias mvn="mvn-color"
+alias tree="tree -C"
 
 ## Functions
 
