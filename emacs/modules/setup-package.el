@@ -33,6 +33,7 @@
                       ac-js2 ; https://github.com/ScottyB/ac-js2
                       json-mode ; https://github.com/joshwnj/json-mode
                       coffee-mode ; https://github.com/defunkt/coffee-mode
+                      dash ; https://github.com/magnars/dash.el
                       ))
 
 ;; Install missing packages.
