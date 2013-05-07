@@ -8,6 +8,7 @@
 (add-to-list 'load-path "modules")
 
 ;; Load files from the `modules` directory in a specific order.
+(load "setup-prepare")
 (load "setup-package")
 (load "setup-general")
 (load "setup-appearance")
