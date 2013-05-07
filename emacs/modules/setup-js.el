@@ -16,3 +16,6 @@
                                    "define"
                                    "require"
                                    "location"))
+
+; Disable auto-fill-mode.
+(add-hook 'js2-mode-hook (lambda () (auto-fill-mode -1)))
