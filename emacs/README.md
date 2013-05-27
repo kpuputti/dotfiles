@@ -33,11 +33,10 @@ From [MELPA docs](http://melpa.milkbox.net/#installing):
 - JavaScript
   - js2-refactor
     - https://github.com/magnars/js2-refactor.el
-  - ac-js2 for autocompletion
-    - https://github.com/ScottyB/ac-js2
   - js2-imenu-extras ?
   - fix yasnippets in js2-mode
 
+- Helm (anything): https://github.com/emacs-helm/helm
 - try fixing compilation errors in Makefile
 - proper html mode with support for HTML5 and embedded css/js
   - https://github.com/fgallina/multi-web-mode

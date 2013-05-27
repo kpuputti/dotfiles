@@ -17,6 +17,7 @@
 (load "setup-yasnippet")
 (load "setup-flycheck")
 (load "setup-git-gutter")
+(load "setup-autocomplete")
 (load "setup-markdown")
 (load "setup-scss")
 (load "setup-js")

@@ -20,6 +20,8 @@
                       starter-kit-bindings
                       solarized-theme ; https://github.com/bbatsov/solarized-emacs
                       smooth-scrolling ; http://emacs.wordpress.com/2007/09/10/smooth-scrolling/
+                      dash ; https://github.com/magnars/dash.el
+                      auto-complete ; https://github.com/auto-complete/auto-complete
                       clojure-mode ; https://github.com/technomancy/clojure-mode
                       markdown-mode ; http://jblevins.org/projects/markdown-mode/
                       fill-column-indicator ; http://www.emacswiki.org/emacs-en/FillColumnIndicator
@@ -29,11 +31,10 @@
                       scss-mode ; https://github.com/antonj/scss-mode
                       flycheck ; https://github.com/lunaryorn/flycheck
                       js2-mode ; https://github.com/mooz/js2-mode
-                      js2-refactor ; https://github.com/magnars/js2-refactor.el
+                      ;js2-refactor ; https://github.com/magnars/js2-refactor.el
                       ac-js2 ; https://github.com/ScottyB/ac-js2
                       json-mode ; https://github.com/joshwnj/json-mode
                       coffee-mode ; https://github.com/defunkt/coffee-mode
-                      dash ; https://github.com/magnars/dash.el
                       ))
 
 ;; Install missing packages.

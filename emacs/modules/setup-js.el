@@ -19,3 +19,6 @@
 
 ; Disable auto-fill-mode.
 (add-hook 'js2-mode-hook (lambda () (auto-fill-mode -1)))
+
+; ac-js2 autocompletion
+(setq-default ac-js2-evaluate-calls t)
