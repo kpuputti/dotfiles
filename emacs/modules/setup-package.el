@@ -19,6 +19,7 @@
                       starter-kit-lisp
                       starter-kit-bindings
                       solarized-theme ; https://github.com/bbatsov/solarized-emacs
+                      color-theme-sanityinc-tomorrow ; https://github.com/purcell/color-theme-sanityinc-tomorrow
                       smooth-scrolling ; http://emacs.wordpress.com/2007/09/10/smooth-scrolling/
                       dash ; https://github.com/magnars/dash.el
                       auto-complete ; https://github.com/auto-complete/auto-complete

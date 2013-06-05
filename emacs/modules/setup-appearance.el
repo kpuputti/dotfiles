@@ -3,7 +3,7 @@
 ;; Theme
 ;; Use only when running in GUI mode.
 (when window-system
-  (load-theme 'solarized-dark t))
+  (load-theme 'sanityinc-tomorrow-night t))
 
 ;; Font
 (set-frame-font "Source Code Pro")
