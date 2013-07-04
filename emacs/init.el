@@ -2,7 +2,7 @@
 ;; Make a link to this file in ~/.emacs
 
 ;; FIXME: Use relative path from this file's location.
-(setq default-directory "~/dev/projects/dotfiles/emacs")
+(setq default-directory "~/code/projects/dotfiles/emacs")
 
 (add-to-list 'load-path "lib")
 (add-to-list 'load-path "modules")

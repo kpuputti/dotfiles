@@ -6,8 +6,7 @@
   (load-theme 'sanityinc-tomorrow-night t))
 
 ;; Font
-(set-frame-font "Source Code Pro")
-(set-face-attribute 'default nil :height 110)
+(set-frame-font "Source Code Pro")(set-face-attribute 'default nil :height 130)
 
 ;; Line highlight
 (global-hl-line-mode 1)
