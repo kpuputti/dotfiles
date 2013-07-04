@@ -1,0 +1,13 @@
+[core]
+	excludesfile = /Users/kpup/code/projects/dotfiles/gitignore
+	editor = subl -n -w
+[user]
+	name = Kimmo Puputti
+	email = kpuputti@gmail.com
+[color]
+	ui = true
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status

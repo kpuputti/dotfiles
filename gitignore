@@ -1,0 +1,62 @@
+# Taken from https://github.com/github/gitignore/tree/master/Global
+
+##### OSX #####
+
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+
+##### Linux #####
+
+.*
+!.gitignore
+*~
+
+
+##### Emacs #####
+
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+.elc
+auto-save-list
+tramp
+.\#*
+
+# Org-mode
+.org-id-locations
+*_archive
+
+
+##### SASS #####
+
+*.sass-cache
+
+
+##### SBT #####
+
+target/
+lib_managed/
+src_managed/
+project/boot/
+
+
+##### SVN #####
+
+.svn/
+
+
+##### Sublime Text #####
+
+# SublimeText project files
+*.sublime-workspace

@@ -14,18 +14,6 @@ alias cd,,,,,,,="cd ../../../../../../.."
 
 alias llh="ll --human-readable"
 alias lah="la --human-readable"
-
-# alias share-folder='python -mSimpleHTTPServer 8080'
-
-# alias dev-browser='chromium-browser \
-#     --disable-web-security \
-#     --disable-application-cache \
-#     --disk-cache-size=0 \
-#     --enable-devtools-experiments \
-#     --enable-memory-info \
-#     --media-cache-size=0'
-
-alias mvn="mvn-color"
 alias tree="tree -C"
 
 ## Functions
@@ -37,25 +25,18 @@ function git-publish() {
 }
 
 function update() {
-    sudo apt-get update
-    sudo apt-get upgrade
-    sudo gem update
-    sudo npm update --global
+    brew update
+    brew upgrade
+    gem update
+    npm update --global
     # TODO: update pip (+ easy_install ?) packages
 }
 
 ## Exports
 
-# export EDITOR=
+HOME_BIN_DIR=$HOME/bin
 
-DEV_LIB=$HOME/dev/lib
-
-# ANDROID_HOME
-export ANDROID_HOME=$DEV_LIB/android-sdk-linux
-
-HOME_BIN=$HOME/bin
-ANDROID_TOOLS=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
-SBT=$DEV_LIB/sbt/bin
+export EDITOR='subl -w'
 
 # PATH
-export PATH=$HOME_BIN:$ANDROID_TOOLS:$SBT:$PATH
+export PATH=$HOME_BIN_DIR:$PATH
