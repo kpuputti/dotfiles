@@ -25,11 +25,15 @@ function git-publish() {
 }
 
 function update() {
+    echo 'updating brew...'
     brew update
     brew upgrade
+    echo 'updating gem...'
     gem update
+    echo 'updating npm...'
     npm update --global
     # TODO: update pip (+ easy_install ?) packages
+    echo 'everything updated'
 }
 
 ## Exports
