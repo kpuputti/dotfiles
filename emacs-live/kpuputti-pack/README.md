@@ -31,20 +31,27 @@ From [MELPA docs](http://melpa.milkbox.net/#installing):
 
 ## TODO
 
-- helm
-- projectile
-- dirtree
-- yasnippet
+### Must
+
 - flycheck
-- js2-refactor
+- css, scss (with css autocompletion?)
 - web-mode
 - daemon mode + emacsclient + aliases
-- .editorconfig support
+
+### Should
+
+- yasnippet (config, bindings)
 - FuzzyFormat for indentation detection
-- json
-- css, scss
-- ensime
+- ensime for Scala dev
+
+### Could
+
+- dirtree
+- json (with flycheck)
+- js2-refactor
 - github flavored markdown + preview
-- enable flyspell on code comments
+- flyspell on code comments
 - anzu-mode to enhance isearch
-- enable opening a browser when clicking a URL
+- opening a URL
+- el-get
+- .editorconfig support

@@ -14,11 +14,8 @@
   (package-refresh-contents))
 
 ;; Define required packages.
-(defvar my-packages '(
-                      smooth-scrolling ; http://emacs.wordpress.com/2007/09/10/smooth-scrolling/
-                      fill-column-indicator ; http://www.emacswiki.org/emacs-en/FillColumnIndicator
-                      git-gutter-fringe ; https://github.com/syohex/emacs-git-gutter-fringe
-                      ))
+(defvar my-packages '(dash fill-column-indicator git-gutter-fringe projectile flx-ido
+                           helm helm-projectile helm-anything))
 
 ;; Install missing packages.
 (dolist (p my-packages)
