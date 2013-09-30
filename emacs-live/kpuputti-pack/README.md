@@ -33,25 +33,26 @@ From [MELPA docs](http://melpa.milkbox.net/#installing):
 
 ### Must
 
-- flycheck
-- css, scss (with css autocompletion?)
 - web-mode
 - daemon mode + emacsclient + aliases
 
 ### Should
 
+- feature-mode config (goto step definition etc., autocompletion?)
 - yasnippet (config, bindings)
 - FuzzyFormat for indentation detection
 - ensime for Scala dev
 
 ### Could
 
+- css autocompletion in scss-mode
+- open emacs in front
+- open emacs in fullscreen
 - dirtree
-- json (with flycheck)
 - js2-refactor
 - github flavored markdown + preview
-- flyspell on code comments
 - anzu-mode to enhance isearch
 - opening a URL
 - el-get
+- Cask
 - .editorconfig support

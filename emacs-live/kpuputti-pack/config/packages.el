@@ -14,8 +14,10 @@
   (package-refresh-contents))
 
 ;; Define required packages.
-(defvar my-packages '(dash fill-column-indicator git-gutter-fringe projectile flx-ido
-                           helm helm-projectile helm-anything))
+(defvar my-packages '(dash fill-column-indicator git-gutter-fringe
+                           projectile flx-ido helm helm-projectile
+                           helm-anything flycheck scss-mode json-mode
+                           scala-mode2 feature-mode))
 
 ;; Install missing packages.
 (dolist (p my-packages)

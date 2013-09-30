@@ -12,6 +12,15 @@
 ;; Projectile.
 (projectile-global-mode)
 
+;; Flycheck.
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+;; Don't compile SCSS files when saving.
+(setq-default scss-compile-at-save nil)
+
+;; Enable spell-check in in code comments.
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+
 ;; flx in ido.
 (require 'flx-ido)
 (ido-mode 1)
