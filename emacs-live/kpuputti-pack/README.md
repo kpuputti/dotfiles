@@ -9,9 +9,9 @@ pack for my [Emacs](http://www.gnu.org/software/emacs/) config.
 Command line tools for [Flycheck](http://flycheck.github.io/):
 
 ```
-sudo npm install -g jshint csslint jsonlint coffeelint
-sudo gem install sass # or compass
-sudo pip install flake8
+npm install -g jshint csslint jsonlint coffeelint
+gem install sass # or compass
+pip install flake8
 ```
 
 ## Updating packages
@@ -33,11 +33,26 @@ From [MELPA docs](http://melpa.milkbox.net/#installing):
 
 ### Must
 
+- redo without emacs live?
+- intergate tern.js
+
+- js2-mode:
+  - return indents
+  - sane indentation toggling
+  - insert matching quotmark/paren/etc.
+- remove automatic dtr from save
+- make sure emacs uses the correct shell paths etc.
+- bind C-w to backward-delete-word etc. ??
+  - clear selection when typing
 - web-mode
 - daemon mode + emacsclient + aliases
 
 ### Should
 
+- change theme to something with lower contrast
+- clojure: show nrepl output in the nrepl buffer
+- git blame support
+- js repl (e.g. nodejs-repl)
 - feature-mode config (goto step definition etc., autocompletion?)
 - yasnippet (config, bindings)
 - FuzzyFormat for indentation detection
