@@ -1,7 +1,6 @@
 ;;;; ==================== TODO ==================== ;;;;
-; js2-refactor
-; auto-insert parens, quotes, etc. (electric-pair-mode, autopair.el)
 ; web-mode
+; js2-refactor
 ; undo-tree
 ; kill ring navigation
 ; helm
@@ -52,6 +51,7 @@
                       anzu
                       git-gutter-fringe
                       base16-theme
+                      autopair
                       flycheck
                       js2-mode
                       json-mode
@@ -201,12 +201,14 @@
 ;; Flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
+;; Autopair
+(autopair-global-mode)
+
 ;; JS
-(setq js2-bounce-indent-p t)
-(setq js2-allow-keywords-as-property-name t)
-(setq js2-missing-semi-one-line-override t)
-(setq js2-include-node-externs t)
-(setq js2-global-externs '("jQuery"
+(setq js2-allow-keywords-as-property-name t
+      js2-missing-semi-one-line-override t
+      js2-include-node-externs t
+      js2-global-externs '("jQuery"
                            "$"
                            "_"
                            "Backbone"
