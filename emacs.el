@@ -89,7 +89,7 @@
 ;; Show column number in mode line.
 (column-number-mode 1)
 
-;; Hilight matching parens etc.
+;; Highlight matching parens etc.
 (show-paren-mode 1)
 
 ;; Show file size in mode line.
@@ -277,7 +277,7 @@
 ;; Well this sucks, but Emacs doesn't find ispell otherwise.
 (setq ispell-program-name "/usr/local/bin/ispell")
 
-;; Hilight annotations.
+;; Highlight annotations.
 ;; http://emacsredux.com/blog/2013/07/24/highlight-comment-annotations/
 (defun font-lock-comment-annotations ()
   "Highlight a bunch of well known comment annotations.
