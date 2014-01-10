@@ -1,22 +1,13 @@
 ;;;; ==================== TODO ==================== ;;;;
-; web-mode
-; js2-refactor
-; undo-tree
-; kill ring navigation
-; helm
-; ack
-; flyspell
-; autocomplete
+
 ; window-navigation (like in emacs live)
-; winner-mode
-; volatile-hilights
-; hilight TODO etc.
 ; set all coding systems to utf-8
+; fix flycheck in js2-mode
+; web-mode
+; js2-refactor, js-doc, nodejs-repl, requirejs-mode
 ; magit
-; dired
-; diff
-; clean up modeline (diminish, prelude-editor.el)
-; ASCII art splash screen?
+; autocomplete
+
 ;; => split setup to different files, move osx stuff to a separate file
 
 
@@ -47,18 +38,25 @@
 (defvar my-packages '(dash
                       projectile
                       flx-ido
+                      browse-kill-ring
+                      undo-tree
+                      volatile-highlights
+                      diminish
                       smex
                       anzu
                       git-gutter-fringe
                       base16-theme
+                      color-theme-solarized
                       autopair
+                      magit
                       flycheck
                       js2-mode
                       json-mode
                       scala-mode2
                       scss-mode
                       feature-mode
-                      markdown-mode))
+                      markdown-mode
+                      web-mode))
 
 ;; Install missing packages.
 (dolist (p my-packages)
@@ -70,31 +68,48 @@
 
 ;; Set theme and font.
 (when window-system
-  (load-theme 'base16-default t)
+  (load-theme 'solarized-dark t)
   (add-to-list 'default-frame-alist '(font . "Source Code Pro")))
 
-;; Remove clutter from the UI.
+;; Remove menus and tool bars.
 (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (when (and (not window-system) (fboundp 'menu-bar-mode))
   (menu-bar-mode -1))
 
+;; Show line numbers in gutter and mode line.
 (global-linum-mode 1)
 (line-number-mode 1)
-(global-hl-line-mode 1)
-(column-number-mode 1)
-(show-paren-mode 1)
-(size-indication-mode t)
-(blink-cursor-mode -1)
-(global-whitespace-mode 1)
 
+;; Highlight current line.
+(global-hl-line-mode 1)
+
+;; Show column number in mode line.
+(column-number-mode 1)
+
+;; Hilight matching parens etc.
+(show-paren-mode 1)
+
+;; Show file size in mode line.
+(size-indication-mode t)
+
+;; Disable cursor blinking.
+(blink-cursor-mode -1)
+
+;; Enable whitespace-mode, but keep it subtle.
+(global-whitespace-mode 1)
 (setq-default whitespace-style '(face tab-mark trailing))
 
+;; Disable mode line 3D highlighting,
+(set-face-attribute 'mode-line nil :box nil)
+
+;; Always decorate as much as possible, disable startup screen.
 (setq font-lock-maximum-decoration t
       color-theme-is-global t
       inhibit-startup-screen t
       initial-scratch-message nil)
 
+;; Configure scrolling.
 (setq scroll-margin 0
       scroll-conservatively 100000
       scroll-preserve-screen-position 1)
@@ -110,8 +125,9 @@
   (fringe-mode 4))
 
 ;; Git gutter
-(setq git-gutter-fr:side 'right-fringe)
+(require 'git-gutter-fringe)
 (global-git-gutter-mode t)
+(setq git-gutter-fr:side 'right-fringe)
 
 
 ;;; ==================== ALIASES ==================== ;;;
@@ -176,6 +192,13 @@
       kept-old-versions 2
       version-control t)
 
+;; Enable undo/redo for window configurations.
+(when (fboundp 'winner-mode)
+  (winner-mode 1))
+
+;; Kill ring
+(browse-kill-ring-default-keybindings)
+
 ;; Save cursor position.
 (setq save-place-file (concat user-emacs-directory "saved-places"))
 (setq-default save-place t)
@@ -231,6 +254,28 @@
 ;; Don't compile SCSS files when saving.
 (setq-default scss-compile-at-save nil)
 
+;; Enable spell-check in in code comments.
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+
+;; Well this sucks, but Emacs doesn't find ispell otherwise.
+(setq ispell-program-name "/usr/local/bin/ispell")
+
+;; Hilight annotations.
+;; http://emacsredux.com/blog/2013/07/24/highlight-comment-annotations/
+(defun font-lock-comment-annotations ()
+  "Highlight a bunch of well known comment annotations.
+
+This functions should be added to the hooks of major modes for programming."
+  (font-lock-add-keywords
+   nil '(("\\<\\(FIX\\(ME\\)?\\|TODO\\|OPTIMIZE\\|HACK\\|REFACTOR\\):"
+          1 font-lock-warning-face t))))
+
+(add-hook 'prog-mode-hook 'font-lock-comment-annotations)
+
+;; Highlight some operations.
+(require 'volatile-highlights)
+(volatile-highlights-mode t)
+
 
 ;;; ==================== BINDINGS ==================== ;;;
 
@@ -248,3 +293,12 @@
 (global-set-key (kbd "M--") 'text-scale-decrease)
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+
+
+;;; ==================== DIMINISH ==================== ;;;
+
+;; Diminish mode line
+(diminish 'anzu-mode)
+(diminish 'autopair-mode)
+(diminish 'git-gutter-mode)
+(diminish 'global-whitespace-mode)
