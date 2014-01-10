@@ -15,6 +15,7 @@ alias cd,,,,,,,="cd ../../../../../../.."
 alias llh="ll --human-readable"
 alias lah="la --human-readable"
 alias tree="tree -C"
+alias server="python -m SimpleHTTPServer"
 
 ## Functions
 
