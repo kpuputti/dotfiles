@@ -1,11 +1,10 @@
 ;;;; ==================== TODO ==================== ;;;;
 
-; window-navigation (like in emacs live)
-; set all coding systems to utf-8
 ; fix flycheck in js2-mode
 ; web-mode
-; js2-refactor, js-doc, nodejs-repl, requirejs-mode
 ; magit
+; js2-refactor, js-doc, nodejs-repl, requirejs-mode
+; window-navigation (like in emacs live)
 ; autocomplete
 
 ;; => split setup to different files, move osx stuff to a separate file
@@ -34,7 +33,7 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-;; Defined requires packages.
+;; Required packages.
 (defvar my-packages '(dash
                       projectile
                       flx-ido
@@ -47,6 +46,8 @@
                       git-gutter-fringe
                       base16-theme
                       color-theme-solarized
+                      rainbow-mode
+                      rainbow-delimiters
                       autopair
                       magit
                       flycheck
@@ -56,7 +57,8 @@
                       scss-mode
                       feature-mode
                       markdown-mode
-                      web-mode))
+                      web-mode
+                      clojure-mode))
 
 ;; Install missing packages.
 (dolist (p my-packages)
@@ -137,6 +139,18 @@
 
 
 ;;; ==================== MISC ==================== ;;;
+
+;; Use UTF-8 everywhere by default.
+;; http://stackoverflow.com/a/2903256
+(setq utf-translate-cjk-mode nil) ; disable CJK coding/encoding (Chinese/Japanese/Korean characters)
+(set-language-environment 'utf-8)
+(set-keyboard-coding-system 'utf-8-mac) ; For old Carbon emacs on OS X only
+(setq locale-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(unless (eq system-type 'windows-nt)
+  (set-selection-coding-system 'utf-8))
+(prefer-coding-system 'utf-8)
 
 ;; Disable audible and visible bells.
 (setq ring-bell-function 'ignore)
@@ -222,6 +236,9 @@
 (setq gc-cons-threshold 20000000)
 
 ;; Flycheck
+
+;; show only fringe markers.
+(setq flycheck-highlighting-mode 'nil)
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; Autopair
@@ -276,6 +293,9 @@ This functions should be added to the hooks of major modes for programming."
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
 
+;; Rainbow delimiters.
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+
 
 ;;; ==================== BINDINGS ==================== ;;;
 
@@ -302,3 +322,4 @@ This functions should be added to the hooks of major modes for programming."
 (diminish 'autopair-mode)
 (diminish 'git-gutter-mode)
 (diminish 'global-whitespace-mode)
+(diminish 'volatile-highlights-mode)
