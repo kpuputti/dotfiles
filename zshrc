@@ -41,7 +41,7 @@ function update() {
 
 HOME_BIN_DIR=$HOME/bin
 
-export EDITOR='subl -w'
+export EDITOR='emacs -nw'
 
 # PATH
 export PATH=$HOME_BIN_DIR:$PATH
