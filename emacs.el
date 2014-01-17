@@ -1,15 +1,3 @@
-;;;; ==================== TODO ==================== ;;;;
-
-; fix flycheck in js2-mode
-; web-mode
-; magit
-; js2-refactor, js-doc, nodejs-repl, requirejs-mode
-; window-navigation (like in emacs live)
-; autocomplete
-
-;; => split setup to different files, move osx stuff to a separate file
-
-
 ;;; Defuns
 
 ;; http://whattheemacsd.com/appearance.el-01.html
