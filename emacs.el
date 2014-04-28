@@ -27,6 +27,7 @@
                       flx-ido
                       browse-kill-ring
                       undo-tree
+                      exec-path-from-shell
                       volatile-highlights
                       diminish
                       smex
@@ -127,6 +128,10 @@
 
 
 ;;; ==================== MISC ==================== ;;;
+
+;; Fix OSX PATH when not started from a terminal.
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
 
 ;; Use UTF-8 everywhere by default.
 ;; http://stackoverflow.com/a/2903256
@@ -229,6 +234,9 @@
 (setq flycheck-highlighting-mode 'nil)
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
+;; Electric indent (indent after newline).
+(electric-indent-mode 1)
+
 ;; Autopair
 (autopair-global-mode)
 
@@ -260,7 +268,7 @@
 (setq-default scss-compile-at-save nil)
 
 ;; Enable spell-check in in code comments.
-(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+;(add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
 ;; Well this sucks, but Emacs doesn't find ispell otherwise.
 (setq ispell-program-name "/usr/local/bin/ispell")
@@ -282,7 +290,8 @@ This functions should be added to the hooks of major modes for programming."
 (volatile-highlights-mode t)
 
 ;; Rainbow delimiters.
-(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+;; TODO: enable for lisp modes
+;(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
 
 ;;; ==================== BINDINGS ==================== ;;;
