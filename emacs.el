@@ -47,7 +47,9 @@
                       feature-mode
                       markdown-mode
                       web-mode
-                      clojure-mode))
+                      clojure-mode
+                      haskell-mode
+                      go-mode))
 
 ;; Install missing packages.
 (dolist (p my-packages)
@@ -266,6 +268,10 @@
 
 ;; Don't compile SCSS files when saving.
 (setq-default scss-compile-at-save nil)
+
+;; Haskell
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+;(speedbar-add-supported-extension ".hs")
 
 ;; Enable spell-check in in code comments.
 ;(add-hook 'prog-mode-hook 'flyspell-prog-mode)
