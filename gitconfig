@@ -1,6 +1,6 @@
 [core]
 	excludesfile = /Users/kpup/code/projects/dotfiles/gitignore
-	editor = subl -n -w
+	editor = emacs -nw
 [user]
 	name = Kimmo Puputti
 	email = kpuputti@gmail.com
