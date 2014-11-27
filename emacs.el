@@ -1,5 +1,13 @@
 ;;; Defuns
 
+;;; http://www.emacswiki.org/UnfillParagraph
+;;; Stefan Monnier <foo at acm.org>. It is the opposite of fill-paragraph
+(defun unfill-paragraph ()
+  "Takes a multi-line paragraph and makes it into a single line of text."
+  (interactive)
+  (let ((fill-column (point-max)))
+    (fill-paragraph nil)))
+
 ;; http://whattheemacsd.com/appearance.el-01.html
 (defmacro rename-modeline (package-name mode new-name)
   `(eval-after-load ,package-name
@@ -49,7 +57,9 @@
                       web-mode
                       clojure-mode
                       haskell-mode
-                      go-mode))
+                      go-mode
+                      typescript
+                      jsx-mode))
 
 ;; Install missing packages.
 (dolist (p my-packages)
@@ -286,7 +296,7 @@
 
 This functions should be added to the hooks of major modes for programming."
   (font-lock-add-keywords
-   nil '(("\\<\\(FIX\\(ME\\)?\\|TODO\\|OPTIMIZE\\|HACK\\|REFACTOR\\):"
+   nil '(("\\<\\(FIXME\\|TODO\\|OPTIMIZE\\|HACK\\|REFACTOR\\)"
           1 font-lock-warning-face t))))
 
 (add-hook 'prog-mode-hook 'font-lock-comment-annotations)
