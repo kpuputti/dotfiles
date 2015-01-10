@@ -59,7 +59,8 @@
                       haskell-mode
                       go-mode
                       typescript
-                      jsx-mode))
+                      jsx-mode
+                      geiser))
 
 ;; Install missing packages.
 (dolist (p my-packages)
