@@ -33,6 +33,7 @@
 (defvar my-packages '(dash
                       projectile
                       flx-ido
+                      ido-vertical-mode
                       browse-kill-ring
                       undo-tree
                       exec-path-from-shell
@@ -60,7 +61,10 @@
                       go-mode
                       typescript
                       jsx-mode
-                      geiser))
+                      geiser
+                      expand-region
+                      move-text
+                      js-doc))
 
 ;; Install missing packages.
 (dolist (p my-packages)
@@ -72,7 +76,9 @@
 
 ;; Set theme and font.
 (when window-system
-  (load-theme 'solarized-dark t)
+  (load-theme 'solarized t)
+  (set-frame-parameter nil 'background-mode 'dark)
+  (enable-theme 'solarized)
   (add-to-list 'default-frame-alist '(font . "Source Code Pro")))
 
 ;; Remove menus and tool bars.
@@ -185,6 +191,7 @@
 (ido-mode 1)
 (ido-everywhere 1)
 (flx-ido-mode 1)
+;(ido-vertical-mode 1)
 
 ;; Smex
 (setq smex-save-file (concat user-emacs-directory "smex-items"))
@@ -327,6 +334,12 @@ This functions should be added to the hooks of major modes for programming."
 (global-set-key (kbd "M--") 'text-scale-decrease)
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+(global-set-key (kbd "C-=") 'er/expand-region)
+(move-text-default-bindings)
+(add-hook 'js2-mode-hook
+          #'(lambda ()
+              (define-key js2-mode-map "\C-ci" 'js-doc-insert-function-doc)
+              (define-key js2-mode-map "@" 'js-doc-insert-tag)))
 
 
 ;;; ==================== DIMINISH ==================== ;;;
