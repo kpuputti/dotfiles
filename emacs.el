@@ -64,7 +64,8 @@
                       geiser
                       expand-region
                       move-text
-                      js-doc))
+                      js-doc
+                      less-css-mode))
 
 ;; Install missing packages.
 (dolist (p my-packages)
