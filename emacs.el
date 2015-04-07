@@ -18,11 +18,14 @@
 ;;; Packages
 
 (setq package-archives
-      '(("gnu"       . "http://elpa.gnu.org/packages/")
-        ("original"  . "http://tromey.com/elpa/")
-        ("org"       . "http://orgmode.org/elpa/")
-        ("marmalade" . "http://marmalade-repo.org/packages/")
-        ("melpa"     . "http://melpa.milkbox.net/packages/")))
+      '(
+        ("gnu"       . "http://elpa.gnu.org/packages/")
+        ;("original"  . "http://tromey.com/elpa/")
+        ;("org"       . "http://orgmode.org/elpa/")
+        ;("marmalade" . "http://marmalade-repo.org/packages/")
+        ("melpa"     . "http://melpa.milkbox.net/packages/")
+        ;("melpa-stable" . "http://melpa-stable.milkbox.net/packages/")
+        ))
 
 (package-initialize)
 
@@ -59,13 +62,17 @@
                       clojure-mode
                       haskell-mode
                       go-mode
-                      typescript
+                      ;typescript
                       jsx-mode
                       geiser
                       expand-region
                       move-text
                       js-doc
-                      less-css-mode))
+                      less-css-mode
+                      auto-complete
+                      ;company-mode
+                      tern
+                      tern-auto-complete))
 
 ;; Install missing packages.
 (dolist (p my-packages)
@@ -284,6 +291,13 @@
 
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (rename-modeline "js2-mode" js2-mode "JS2")
+
+;; Tern
+(add-hook 'js2-mode-hook (lambda () (tern-mode t)))
+;; (eval-after-load 'tern
+;;    '(progn
+;;       (require 'tern-auto-complete)
+;;       (tern-ac-setup)))
 
 ;; Don't compile SCSS files when saving.
 (setq-default scss-compile-at-save nil)
