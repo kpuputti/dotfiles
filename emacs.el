@@ -49,7 +49,6 @@
                       color-theme-solarized
                       rainbow-mode
                       rainbow-delimiters
-                      autopair
                       magit
                       flycheck
                       js2-mode
@@ -69,10 +68,11 @@
                       move-text
                       js-doc
                       less-css-mode
-                      auto-complete
+                      ;auto-complete
                       ;company-mode
                       tern
-                      tern-auto-complete))
+                      ;tern-auto-complete
+                      smartparens))
 
 ;; Install missing packages.
 (dolist (p my-packages)
@@ -257,18 +257,43 @@
 (setq gc-cons-threshold 20000000)
 
 ;; Flycheck
+; npm install -g bower csslint eslint eslint-plugin-react jsonlint less tern
+(require 'flycheck)
+(flycheck-add-mode 'javascript-eslint 'jsx-mode)
 
 ;; show only fringe markers.
 (setq flycheck-highlighting-mode 'nil)
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
+;; Smartparens
+(require 'smartparens-config)
+(smartparens-global-mode t)
+(show-smartparens-global-mode t)
+(sp-with-modes '(jsx-mode)
+  (sp-local-pair "<" ">"))
+
+(sp-local-pair '(js2-mode jsx-mode css-mode less-css-mode json-mode)
+               "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
+(sp-local-pair '(js2-mode jsx-mode json-mode)
+               "[" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
+
+(defun my-create-newline-and-enter-sexp (&rest _ignored)
+  "Open a new brace or bracket expression, with relevant newlines and indent. "
+  (newline)
+  (indent-according-to-mode)
+  (forward-line -1)
+  (indent-according-to-mode))
+
 ;; Electric indent (indent after newline).
 (electric-indent-mode 1)
 
-;; Autopair
-(autopair-global-mode)
-
 ;; JS
+(require 'js2-mode)
+(defun my-js2-mode-hook ()
+  "My js2-mode hook"
+  )
+(add-hook 'js2-mode-hook 'my-js2-mode-hook)
+
 (setq js2-allow-keywords-as-property-name t
       js2-missing-semi-one-line-override t
       js2-include-node-externs t
@@ -285,6 +310,10 @@
                            "after"
                            "beforeEach"
                            "afterEach"))
+(add-hook 'js2-mode-hook
+          #'(lambda ()
+              (define-key js2-mode-map "\C-ci" 'js-doc-insert-function-doc)
+              (define-key js2-mode-map "@" 'js-doc-insert-tag)))
 
 ;; Enable better editing of camelCased variables etc.
 (add-hook 'js2-mode-hook 'subword-mode)
@@ -298,6 +327,23 @@
 ;;    '(progn
 ;;       (require 'tern-auto-complete)
 ;;       (tern-ac-setup)))
+
+;; JSX
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . jsx-mode))
+(add-hook 'jsx-mode-hook (lambda () (tern-mode t)))
+
+;; web-mode
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.ejs\\'" . web-mode))
+(defun my-web-mode-hook ()
+  "web-mode settings"
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-style-padding 2)
+  (setq web-mode-script-padding 2))
+(add-hook 'web-mode-hook 'my-web-mode-hook)
 
 ;; Don't compile SCSS files when saving.
 (setq-default scss-compile-at-save nil)
@@ -332,6 +378,7 @@ This functions should be added to the hooks of major modes for programming."
 ;; TODO: enable for lisp modes
 ;(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
+(setq magit-last-seen-setup-instructions "1.4.0")
 
 ;;; ==================== BINDINGS ==================== ;;;
 
@@ -351,17 +398,26 @@ This functions should be added to the hooks of major modes for programming."
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 (global-set-key (kbd "C-=") 'er/expand-region)
 (move-text-default-bindings)
-(add-hook 'js2-mode-hook
-          #'(lambda ()
-              (define-key js2-mode-map "\C-ci" 'js-doc-insert-function-doc)
-              (define-key js2-mode-map "@" 'js-doc-insert-tag)))
 
 
 ;;; ==================== DIMINISH ==================== ;;;
 
 ;; Diminish mode line
 (diminish 'anzu-mode)
-(diminish 'autopair-mode)
 (diminish 'git-gutter-mode)
 (diminish 'global-whitespace-mode)
 (diminish 'volatile-highlights-mode)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(safe-local-variable-values (quote ((no-byte-compile t) (jsx-indent-level . 2)))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+(put 'upcase-region 'disabled nil)
+(put 'narrow-to-region 'disabled nil)
