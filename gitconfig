@@ -11,3 +11,9 @@
 	br = branch
 	ci = commit
 	st = status
+[push]
+	default = simple
+[heroku]
+	account = personal
+[branch]
+	autosetuprebase = always
