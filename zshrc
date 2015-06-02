@@ -28,7 +28,7 @@ function git-publish() {
 function update() {
     echo 'updating brew...'
     brew update
-    brew upgrade
+    brew upgrade --all
     echo 'updating gem...'
     gem update
     echo 'updating npm...'
