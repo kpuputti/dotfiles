@@ -17,6 +17,16 @@ alias lah="la --human-readable"
 alias tree="tree -C"
 alias server="python -m SimpleHTTPServer"
 
+alias gs="git status"
+alias gb="git branch"
+alias gd="git diff"
+alias gdc="git diff --cached"
+alias gl="git log"
+alias glo="git log --oneline"
+alias glp="git log --patch"
+alias gci="git commit"
+alias ga="git add"
+
 ## Functions
 
 function git-publish() {
