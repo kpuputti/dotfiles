@@ -24,8 +24,9 @@ alias gdc="git diff --cached"
 alias gl="git log"
 alias glo="git log --oneline"
 alias glp="git log --patch"
-alias gci="git commit"
+alias gc="git commit"
 alias ga="git add"
+alias gco="git checkout"
 
 ## Functions
 
