@@ -1,0 +1,120 @@
+* Git
+
+** Installation
+
+TODO Homebrew
+
+** Setup
+
+TODO
+
+global ignores
+user name
+user email
+editor
+default push
+default rebase when pulling
+git aliases
+shell aliases
+colors
+local email
+info/exclude
+heroku accounts
+
+** Basics
+
+#+begin_src sh
+git init                       # TODO
+git clone                      # TODO: clone a git repository
+git add path/to/file           # TODO
+git add -i                     # TODO
+git rm path/to/tile            # TODO
+git commit                     # commit staged changes (opens $EDITOR)
+git commit -m "commit message" # commit staged changes with the given message
+git commit -a                  # TODO
+git commit --amend             # TODO
+git reset HEAD path/to/file    # TODO
+git checkout path/to/file      # TODO
+git fetch                      # download objects and refs (branches, tags) from current upstream branch or origin
+git fetch --all                # fetch all remotes
+git pull                       # TODO
+git push                       # TODO
+git tag                        # TODO
+#+end_src
+
+** Logging
+
+#+begin_src sh
+git log                                    # log for current branch
+git log --oneline                          # each commit in one line
+git log --oneline --decorate               # decorate with ref names (branches, tags, etc.)
+git log --oneline --decorate --graph --all # show graph for all refs
+git log -p                                 # with diff for each commit
+git log -p -- path/to/file                 # log with diff for a specific file
+git log -p -U10 -- path/to/file            # diff with 10 lines of context (default 3)
+git log -L 10,20:path/to/file              # history for a region (from line 10 to 20) in a file
+#+end_src
+
+** Branching
+
+#+begin_src sh
+git branch                      # list local branches
+git branch -r                   # list remote branches
+git branch -a                   # list local and remote branches
+git branch -v                   # show latest commit info
+git branch -vv                  # ^ with upstream branch name
+git checkout master             # checkout master branch
+git checkout -b new-branch-name # create new local branch from the current one
+git branch -d new-branch-name   # delete local branch (must be merged with upstream)
+git branch -D new-branch-name   # delete local branch even if not merged
+git branch -m                   # TODO: rename branch
+git branch -t                   # TODO
+git branch -u                   # TODO
+git branch --merged             # TODO
+git branch --no-merged          # TODO
+#+end_src
+
+** Remotes
+
+TODO
+
+add
+remove
+change
+prune
+
+** Submodules
+
+TODO
+
+init
+update
+
+** Resources
+
+- [[https://git-scm.com/][Official Git website]]
+- [[https://en.wikipedia.org/?title=Git_(software)][Git in Wikipedia]]
+- [[https://git-scm.com/book/en/v2][Pro Git book]]
+- [[http://magit.vc/][Magit]]
+- [[http://jonas.nitro.dk/tig/][Tig]]
+
+
+TODO: check these out
+
+- https://help.github.com/
+- https://git-scm.com/docs
+- http://rogerdudler.github.io/git-guide/
+- http://gitref.org/
+- http://ndpsoftware.com/git-cheatsheet.html
+- https://www.atlassian.com/git/
+- http://nvie.com/posts/a-successful-git-branching-model/
+- http://endoflineblog.com/gitflow-considered-harmful
+- http://www.git-tower.com/blog/git-cheat-sheet/
+- https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf
+- https://github.com/blog/2019-how-to-undo-almost-anything-with-git
+- https://sethrobertson.github.io/GitFixUm/fixup.html
+- http://git-merge.com/
+- http://wildlyinaccurate.com/a-hackers-guide-to-git/
+- http://www.infoq.com/presentations/A-Tale-of-Three-Trees
+- http://ftp.newartisans.com/pub/git.from.bottom.up.pdf
+- http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
