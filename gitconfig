@@ -1,9 +1,9 @@
-[core]
-	excludesfile = /Users/kpup/code/projects/dotfiles/gitignore
-	editor = emacs -nw
 [user]
 	name = Kimmo Puputti
-	email = kpuputti@gmail.com
+	email = git@kimmo.kpuputti.fi
+[core]
+	editor = emacs -nw
+	excludesfile = /Users/kpuputti/code/projects/dotfiles/gitignore
 [color]
 	ui = true
 [alias]
@@ -11,9 +11,7 @@
 	br = branch
 	ci = commit
 	st = status
-[push]
-	default = simple
-[heroku]
-	account = personal
 [branch]
 	autosetuprebase = always
+[rerere]
+	enabled = true
