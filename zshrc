@@ -50,10 +50,7 @@ function update() {
 
 ## Exports
 
-HOME_BIN_DIR=$HOME/bin
-
-export NODE_ENV=development
-export EDITOR='emacs -nw'
+# HOME_BIN_DIR=$HOME/bin
 
 # PATH
-export PATH=$HOME_BIN_DIR:$PATH
+# export PATH=$HOME_BIN_DIR:$PATH
