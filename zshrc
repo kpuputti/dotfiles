@@ -36,6 +36,10 @@ function git-publish() {
     git checkout gh-pages && git merge master && git push origin gh-pages && git checkout master
 }
 
+function delete-merged-branches() {
+    git checkout master && git branch --merged | grep -v master | xargs git branch -d
+}
+
 function update() {
     echo 'updating brew...'
     brew update
