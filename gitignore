@@ -31,6 +31,7 @@ Icon
 auto-save-list
 tramp
 .\#*
+.tern-port
 
 # Org-mode
 .org-id-locations
