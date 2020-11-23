@@ -1,3 +1,4 @@
+# -*- sh -*-
 ### ZSH customizations
 
 # add `source /path/to/this/file` in ~/.zshrc
@@ -43,18 +44,48 @@ function delete-merged-branches() {
 function update() {
     echo 'updating brew...'
     brew update
-    brew upgrade --all
-    echo 'updating gem...'
-    gem update
+    brew upgrade
+    # echo 'updating gem...'
+    # gem update
     echo 'updating npm...'
     npm update --global
-    # TODO: update pip (+ easy_install ?) packages
     echo 'everything updated'
 }
-
-## Exports
 
 # HOME_BIN_DIR=$HOME/bin
 
 # PATH
 # export PATH=$HOME_BIN_DIR:$PATH
+
+# Use colors in ls output
+export CLICOLOR=true
+
+# Increase history size
+HISTFILE=~/.zsh_history
+HISTSIZE=1000
+SAVEHIST=10000
+# TODO: append
+# TODO: remove duplicates
+
+# Don't save command to history if it starts with a space
+setopt HIST_IGNORE_SPACE
+
+# Disable beeping on error
+unsetopt beep
+
+# Use Emacs mode in zle (zsh line editor)
+bindkey -e
+
+# zstyle :compinstall filename '/Users/kpuputti/.zshrc'
+
+## TODO: .zshenv
+# EDITOR
+# NODE_ENV
+
+## TODO
+# https://github.com/zsh-users/zsh-history-substring-search
+# https://github.com/zsh-users/zsh-autosuggestions
+# https://github.com/zsh-users/zsh-completions
+# https://stackoverflow.com/questions/171563/whats-in-your-zshrc
+# https://grml.org/zsh/zsh-lovers.html
+# shared exports to .zshenv for login and interactive shells
