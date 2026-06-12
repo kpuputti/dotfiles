@@ -42,14 +42,17 @@ function delete-merged-branches() {
 }
 
 function update() {
-    echo 'updating brew...'
+    echo '==> brew update'
     brew update
-    brew upgrade
-    # echo 'updating gem...'
-    # gem update
-    echo 'updating npm...'
+    echo '==> brew upgrade'
+    yes | brew upgrade
+    echo '==> brew cleanup'
+    brew cleanup
+    echo '==> brew autoremove'
+    brew autoremove
+    echo '==> npm update --global'
     npm update --global
-    echo 'everything updated'
+    echo '==> done'
 }
 
 # HOME_BIN_DIR=$HOME/bin
