@@ -1,0 +1,9 @@
+[tools]
+# Loose pins: `mise upgrade` stays within the major without editing this managed file
+node = "24"
+terraform = "1.6.6"
+python = "3.11"
+
+[settings]
+# Required since mise 2025.1, otherwise .node-version/.terraform-version files are ignored
+idiomatic_version_file_enable_tools = ["node", "python", "terraform"]

@@ -1,0 +1,25 @@
+[user]
+	name = Kimmo Puputti
+[core]
+	editor = emacs -nw
+	excludesfile = ~/.gitignore
+[color]
+	ui = true
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+[branch]
+	autosetuprebase = always
+[rerere]
+	enabled = true
+
+# Machine-local settings (default git email etc.) — not managed by chezmoi.
+# Includes are silently skipped if the file doesn't exist.
+[include]
+	path = ~/.gitconfig.local
+
+# Personal projects use their own identity (work dir gets the default)
+[includeIf "gitdir:~/code/projects/"]
+	path = ~/.gitconfig.personal

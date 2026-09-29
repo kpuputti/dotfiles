@@ -1,0 +1,118 @@
+# -*- sh -*-
+
+## Aliases
+
+alias cd,="cd .."
+alias cd,,="cd ../.."
+alias cd,,,="cd ../../.."
+alias cd,,,,="cd ../../../.."
+alias cd,,,,,="cd ../../../../.."
+alias cd,,,,,,="cd ../../../../../.."
+alias cd,,,,,,,="cd ../../../../../../.."
+
+alias llh="ll --human-readable"
+alias lah="la --human-readable"
+alias tree="tree -C"
+
+alias gs="git status"
+alias gb="git branch"
+alias gd="git diff"
+alias gdc="git diff --cached"
+alias gl="git log"
+alias glo="git log --oneline"
+alias glp="git log --patch"
+alias gc="git commit"
+alias ga="git add"
+alias gco="git checkout"
+
+## Functions
+
+function git-publish() {
+	# Merge changes from master branch into the gh-pages branch and
+	# push them to the origin gh-pages branch.
+	git checkout gh-pages && git merge master && git push origin gh-pages && git checkout master
+}
+
+function delete-merged-branches() {
+	git checkout master && git branch --merged | grep -v master | xargs git branch -d
+}
+
+function update() {
+	echo '==> brew update'
+	brew update
+	echo '==> brew upgrade'
+	yes | brew upgrade
+	echo '==> brew bundle'
+	brew bundle --global
+	echo '==> brew cleanup'
+	brew cleanup
+	echo '==> brew autoremove'
+	brew autoremove
+	echo '==> mise upgrade'
+	mise upgrade
+	echo '==> npm update --global'
+	npm update --global
+	echo '==> gcloud components update'
+	gcloud components update --quiet
+	echo '==> dotfiles sync check'
+	local dotfiles="$(chezmoi source-path)"
+	chezmoi verify || echo '!!> live dotfiles differ from repo, run: chezmoi diff'
+	# dry run: lists anything installed that the Brewfile doesn't declare
+	brew bundle cleanup --global
+	[[ -n "$(git -C "$dotfiles" status --porcelain)" ]] &&
+		echo '!!> dotfiles repo has uncommitted changes'
+	[[ -n "$(git -C "$dotfiles" log --oneline '@{upstream}..' 2>/dev/null)" ]] &&
+		echo '!!> dotfiles repo has unpushed commits'
+	echo '==> done'
+	# doom upgrade is deliberately not here: it can break the editor, run it separately
+}
+
+# Use colors in ls output
+export CLICOLOR=true
+
+# Increase history size
+HISTFILE=~/.zsh_history
+HISTSIZE=1000
+SAVEHIST=10000
+
+# Don't save command to history if it starts with a space
+setopt HIST_IGNORE_SPACE
+
+# Disable beeping on error
+unsetopt beep
+
+# Use Emacs mode in zle (zsh line editor)
+bindkey -e
+
+# mise manages node/terraform/python (~/.config/mise/config.toml + per-project
+# .node-version/.terraform-version files)
+eval "$(mise activate zsh)"
+
+# pure prompt https://github.com/sindresorhus/pure (brew formula)
+fpath+=("$(brew --prefix)/share/zsh/site-functions")
+autoload -U promptinit
+promptinit
+prompt pure
+
+_in_pnpm_repo() {
+	local dir=$PWD
+	while [[ $dir != / ]]; do
+		[[ -e $dir/pnpm-lock.yaml ]] && return 0
+		dir=${dir:h}
+	done
+	return 1
+}
+npm() { if _in_pnpm_repo; then pnpm "$@"; else command npm "$@"; fi; }
+npx() { if _in_pnpm_repo; then pnpm exec "$@"; else command npx "$@"; fi; }
+
+# TRANSITION: install the nodenv default-packages list into the current Node
+# version (nodenv-default-packages only runs on `nodenv install`).
+nodenv-sync-defaults() {
+	sed 's/#.*//' "$(nodenv root)/default-packages" | grep -vE '^\s*$' |
+		xargs nodenv exec npm install --global
+}
+
+export PATH="/opt/homebrew/share/google-cloud-sdk/bin:$PATH"
+
+# Machine-local additions (work aliases etc.) — not managed by chezmoi
+[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"

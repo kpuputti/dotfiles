@@ -1,0 +1,5 @@
+#!/bin/sh
+# Brewfile hash: {{ include "dot_Brewfile" | sha256sum }}
+set -eu
+export PATH="/opt/homebrew/bin:$PATH"
+brew bundle --global

@@ -3,13 +3,14 @@ export LC_ALL=en_US.UTF-8
 export NODE_ENV=development
 export EDITOR="emacs -nw"
 
-# https://github.com/settings/tokens
-export HOMEBREW_GITHUB_API_TOKEN=
-
 # Disable CLI tool analytics
 export GATSBY_TELEMETRY_DISABLED=1
 export NEXT_TELEMETRY_DISABLED=1
 export HOMEBREW_NO_ANALYTICS=1
 
 # PATH
-export PATH="$HOME/.emacs.d/bin:$HOME/.poetry/bin:$PATH"
+export PATH="$HOME/.emacs.d/bin:$PATH"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+# Machine-local env (work-specific exports, secrets) — not managed by chezmoi
+[[ -f "$HOME/.zshenv.local" ]] && source "$HOME/.zshenv.local"

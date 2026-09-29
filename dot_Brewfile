@@ -1,0 +1,87 @@
+tap "d12frosted/emacs-plus"
+
+# Dotfiles & runtimes
+# Manage your dotfiles across multiple diverse machines, securely
+brew "chezmoi"
+# Polyglot runtime manager (asdf rust clone)
+brew "mise"
+
+# TRANSITION: legacy version managers, replaced by mise — remove after mise soak
+# Node.js version manager
+brew "nodenv"
+# Python version management
+brew "pyenv"
+# Terraform version manager inspired by rbenv
+brew "tfenv"
+
+# Shell
+# UNIX shell (command interpreter)
+brew "zsh"
+# Pretty, minimal and fast ZSH prompt
+brew "pure"
+# Terminal multiplexer
+brew "tmux"
+# GNU File, Shell, and Text utilities
+brew "coreutils"
+# Display directories as trees (with optional color/HTML output)
+brew "tree"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
+# Static analysis and lint tool, for (ba)sh scripts
+brew "shellcheck"
+# Autoformat shell script source code
+brew "shfmt"
+
+# Git & GitHub
+# Distributed revision control system
+brew "git"
+# GitHub command-line tool
+brew "gh"
+
+# Emacs (Doom) and its tools
+# GNU Emacs text editor
+brew "d12frosted/emacs-plus/emacs-plus@30", trusted: true
+# Incremental parsing library (emacs-plus dep; versioned formula needs explicit link)
+brew "tree-sitter@0.25", link: true
+# Spell checker with better logic than ispell
+brew "aspell"
+# Swiss-army knife of markup format conversion
+brew "pandoc"
+# GitHub Markdown previewer
+brew "grip"
+# Linter for prose
+brew "proselint"
+# Maintain consistent coding style between multiple editors
+brew "editorconfig"
+
+# Cloud & infra
+# Kubernetes command-line interface
+brew "kubernetes-cli"
+# Postgres C API library
+brew "libpq"
+
+# Data & AI
+# Embeddable SQL OLAP Database Management System
+brew "duckdb"
+# Interact with Google Gemini AI models from the command-line
+brew "gemini-cli"
+
+# Casks
+# Command-line interface for 1Password
+cask "1password-cli"
+# Terminal-based AI coding assistant
+cask "claude-code"
+# OpenAI's coding agent that runs in your terminal
+cask "codex"
+# Set of tools to manage resources and applications hosted on Google Cloud
+cask "gcloud-cli"
+# Desktop automation application
+cask "hammerspoon"
+# Reverse proxy, secure introspectable tunnels to localhost
+cask "ngrok"
+# Multimedia player
+cask "vlc"

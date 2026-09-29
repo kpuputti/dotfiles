@@ -1,0 +1,6 @@
+#!/bin/sh
+# mise config hash: {{ include "dot_config/mise/config.toml" | sha256sum }}
+# default npm packages hash: {{ include "dot_default-npm-packages" | sha256sum }}
+set -eu
+export PATH="/opt/homebrew/bin:$PATH"
+mise install
