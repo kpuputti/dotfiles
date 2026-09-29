@@ -65,10 +65,17 @@ requires the 1Password app's CLI integration. Not currently used.
 
 ## Follow-ups
 
-- Remove the TRANSITION-marked nodenv/pyenv/tfenv entries (Brewfile, zshrc,
-  `nodenv-default-packages`, `.chezmoiignore`) after the mise soak period,
-  then `brew uninstall nodenv pyenv tfenv && brew autoremove` and
-  `rm -rf ~/.nodenv ~/.pyenv ~/.zsh/pure ~/Library/pnpm`
+- After the mise soak period, decommission the legacy version managers:
+  remove the TRANSITION-marked nodenv/pyenv/tfenv entries (Brewfile, zshrc,
+  `nodenv-default-packages`, `.chezmoiignore`), then
+  `brew uninstall nodenv pyenv tfenv && brew autoremove`,
+  `rm -rf ~/.nodenv ~/.pyenv ~/.zsh/pure ~/Library/pnpm`, and the
+  `~/.{zshrc,zshenv,zprofile,gitconfig}.bak` backups
+- With the same change, consider moving global npm tools from
+  `dot_default-npm-packages` to mise's npm backend
+  (`"npm:prettier" = "latest"` in the mise config): shared across Node
+  versions, updated by `mise upgrade`/topgrade, and any output from
+  `npm ls -g` beyond npm/corepack then becomes visible drift
 - Migrate `~/.doom.d` into this repo (needs git history migration) as
   `dot_doom.d/`; Doom itself (`~/.emacs.d`) stays an external clone,
   installed by a future `run_once_` script
