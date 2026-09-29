@@ -59,6 +59,10 @@ brew "grip"
 brew "proselint"
 # Maintain consistent coding style between multiple editors
 brew "editorconfig"
+# Cross-platform make (vterm module compiles its native lib with this)
+brew "cmake"
+# Unicode fallback font (Emacs wants Symbola; Unifont fills the same role)
+cask "font-gnu-unifont"
 
 # Cloud & infra
 # Kubernetes command-line interface
