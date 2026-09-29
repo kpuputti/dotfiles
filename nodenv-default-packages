@@ -1,0 +1,22 @@
+# npm packages installed into every Node version by the
+# nodenv-default-packages plugin (runs on `nodenv install`).
+# Symlinked to ~/.nodenv/default-packages.
+# To install these into the *current* version without reinstalling Node:
+#   nodenv-sync-defaults   (defined in ~/.zshrc)
+
+# Package manager
+pnpm
+
+# Doom Emacs formatters / linters (see ~/.doom.d/README.md)
+prettier
+stylelint
+js-beautify
+markdownlint
+marked
+
+# Doom Emacs LSP servers — uncomment whatever `doom doctor` reports missing
+# typescript
+# typescript-language-server
+# vscode-langservers-extracted
+# bash-language-server
+# yaml-language-server

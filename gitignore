@@ -60,3 +60,5 @@ project/boot/
 
 # SublimeText project files
 *.sublime-workspace
+
+**/.claude/settings.local.json
