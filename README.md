@@ -11,9 +11,14 @@ Declarative machine setup, managed with [chezmoi](https://www.chezmoi.io/):
   `.node-version` / `.terraform-version` files
 - **Global npm packages**: `dot_default-npm-packages` →
   `~/.default-npm-packages`, installed by mise into every Node version
+- **Emacs**: [Doom Emacs](https://github.com/doomemacs/core) private config
+  in `dot_doom.d/` → `~/.doom.d`; Doom itself is an external clone at
+  `~/.emacs.d` (not managed here, has its own `.gitignore` for the generated
+  `.local/` etc.), cloned and installed by `run_once_after_30-doom-install.sh`
 
-The `run_onchange_after_*` scripts re-run `brew bundle` and `mise install`
-automatically whenever their source files change.
+The `run_onchange_after_*` scripts re-run `brew bundle`, `mise install` and
+`doom sync` automatically whenever their source files change (for Doom:
+`init.el` / `packages.el`).
 
 ## Prerequisites / assumptions
 
@@ -21,8 +26,8 @@ automatically whenever their source files change.
   it must be (`.zprofile` bootstrap, run scripts, libpq/gcloud PATH entries)
 - Directory convention: `~/code/projects/` for personal repos (drives the
   personal git identity via `includeIf`), work repos elsewhere
-- Emacs config lives in `~/.doom.d` (separate repo for now); `$HOME/.emacs.d/bin`
-  is on PATH and `emacs -nw` is the editor — emacs itself comes from the Brewfile
+- Emacs: `$HOME/.emacs.d/bin` is on PATH and `emacs -nw` is the editor —
+  emacs itself and the Doom module dependencies come from the Brewfile
 - No username or home-directory assumptions — everything uses `$HOME`/`~`
 
 ## Machine-local overrides
@@ -48,7 +53,8 @@ requires the 1Password app's CLI integration. Not currently used.
 2. `brew install chezmoi`
 3. `git clone git@github.com:kpuputti/dotfiles.git ~/code/projects/dotfiles`
 4. `chezmoi init --source ~/code/projects/dotfiles --apply`
-   — writes all dotfiles, then cascades: `brew bundle --global` → `mise install`
+   — writes all dotfiles, then cascades: `brew bundle --global` →
+   `mise install` → clone Doom + `doom install`
 5. Create the machine-local files (see above), at minimum
    `~/.gitconfig.local` with the git email
 6. Open a new terminal.
@@ -62,6 +68,9 @@ requires the 1Password app's CLI integration. Not currently used.
   (steps in `dot_config/topgrade.toml`) + dotfiles/Brewfile sync checks
 - New global CLI tool: add to `dot_Brewfile` (or `dot_default-npm-packages`
   for npm tools), then `chezmoi apply`
+- Emacs: edit `dot_doom.d/`, then `chezmoi apply` (runs `doom sync` when
+  `init.el`/`packages.el` changed). `doom upgrade` is deliberately manual —
+  it can break the editor, so run it when there's slack to fix fallout
 
 ## Follow-ups
 
@@ -76,9 +85,6 @@ requires the 1Password app's CLI integration. Not currently used.
   (`"npm:prettier" = "latest"` in the mise config): shared across Node
   versions, updated by `mise upgrade`/topgrade, and any output from
   `npm ls -g` beyond npm/corepack then becomes visible drift
-- Migrate `~/.doom.d` into this repo (needs git history migration) as
-  `dot_doom.d/`; Doom itself (`~/.emacs.d`) stays an external clone,
-  installed by a future `run_once_` script
 - Optional zsh niceties: zsh-autosuggestions, zsh-history-substring-search
 - Modernize the terminal setup from iTerm/zsh/tmux to something modern
   (separate research: e.g. Ghostty/WezTerm, zellij, fish/nushell)

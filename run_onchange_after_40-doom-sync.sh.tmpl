@@ -1,0 +1,7 @@
+#!/bin/sh
+# doom init hash: {{ include "dot_doom.d/init.el" | sha256sum }}
+# doom packages hash: {{ include "dot_doom.d/packages.el" | sha256sum }}
+set -eu
+export PATH="/opt/homebrew/bin:$PATH"
+[ -x "$HOME/.emacs.d/bin/doom" ] || exit 0
+"$HOME/.emacs.d/bin/doom" sync
