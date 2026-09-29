@@ -38,22 +38,9 @@ function delete-merged-branches() {
 }
 
 function update() {
-	echo '==> brew update'
-	brew update
-	echo '==> brew upgrade'
-	yes | brew upgrade
-	echo '==> brew bundle'
-	brew bundle --global
-	echo '==> brew cleanup'
-	brew cleanup
-	echo '==> brew autoremove'
-	brew autoremove
-	echo '==> mise upgrade'
-	mise upgrade
-	echo '==> npm update --global'
-	npm update --global
-	echo '==> gcloud components update'
-	gcloud components update --quiet
+	# brew/mise/npm/gcloud etc. — steps configured in ~/.config/topgrade.toml
+	echo '==> topgrade'
+	topgrade
 	echo '==> dotfiles sync check'
 	local dotfiles="$(chezmoi source-path)"
 	chezmoi verify || echo '!!> live dotfiles differ from repo, run: chezmoi diff'

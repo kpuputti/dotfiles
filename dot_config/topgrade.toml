@@ -1,0 +1,10 @@
+[misc]
+# emacs: topgrade would run `doom upgrade`, which can break the editor mid-day —
+# upgrade Doom manually when there's slack to fix fallout.
+# system: macOS updates can be slow and want restarts; handled via System Settings.
+# chezmoi: would `git pull` + apply the dotfiles repo — git is managed manually.
+# containers: re-pulls all local docker images and prunes — too aggressive/slow.
+disable = ["emacs", "system", "chezmoi", "containers"]
+
+# Run each package manager's cleanup step after upgrading
+cleanup = true

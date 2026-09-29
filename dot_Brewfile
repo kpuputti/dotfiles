@@ -5,6 +5,8 @@ tap "d12frosted/emacs-plus"
 brew "chezmoi"
 # Polyglot runtime manager (asdf rust clone)
 brew "mise"
+# Upgrade all the things (drives the `update` zsh function)
+brew "topgrade"
 
 # TRANSITION: legacy version managers, replaced by mise — remove after mise soak
 # Node.js version manager

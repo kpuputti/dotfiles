@@ -58,7 +58,8 @@ requires the 1Password app's CLI integration. Not currently used.
 - Edit configs in this repo, then `chezmoi apply`
 - `chezmoi diff` — show drift between repo and live files
 - `chezmoi re-add` — pull a live edit back into the repo
-- `update` (zsh function) — brew update/upgrade/bundle/cleanup + mise upgrade
+- `update` (zsh function) — [topgrade](https://github.com/topgrade-rs/topgrade)
+  (steps in `dot_config/topgrade.toml`) + dotfiles/Brewfile sync checks
 - New global CLI tool: add to `dot_Brewfile` (or `dot_default-npm-packages`
   for npm tools), then `chezmoi apply`
 
