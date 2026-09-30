@@ -7,6 +7,10 @@
 # Package manager
 pnpm
 
+# Emacs agent-shell backend; bundles its own Claude Code runtime, so it must
+# be kept updated independently of the claude-code cask
+@agentclientprotocol/claude-agent-acp
+
 # Doom Emacs formatters / linters (see ~/.doom.d/README.md)
 prettier
 stylelint

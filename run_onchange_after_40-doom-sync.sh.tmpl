@@ -2,6 +2,8 @@
 # doom init hash: {{ include "dot_doom.d/init.el" | sha256sum }}
 # doom packages hash: {{ include "dot_doom.d/packages.el" | sha256sum }}
 set -eu
-export PATH="/opt/homebrew/bin:$PATH"
 [ -x "$HOME/.emacs.d/bin/doom" ] || exit 0
-"$HOME/.emacs.d/bin/doom" sync
+# doom sync snapshots the calling process environment into Emacs's envvar
+# file, so run it from a fresh login shell rather than whatever ran chezmoi.
+env -i HOME="$HOME" USER="$USER" SHELL=/bin/zsh TERM=xterm-256color PATH=/usr/bin:/bin \
+	/bin/zsh -lic '"$HOME/.emacs.d/bin/doom" sync'

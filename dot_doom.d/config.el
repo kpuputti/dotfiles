@@ -12,6 +12,11 @@
   (setq mac-option-modifier nil
         mac-command-modifier 'meta))
 
+;; emacs-plus's site-start.el overwrites PATH with a build-time snapshot after
+;; Doom has loaded its envvar file; load it again so the shell PATH wins.
+(when (bound-and-true-p ns-emacs-plus-injected-path)
+  (load (doom-profile-dir t "init.d" "05-doom-env.load.el") 'noerror 'nomessage))
+
 (setq hippie-expand-try-functions-list '(try-expand-dabbrev
                                          try-expand-dabbrev-all-buffers
                                          try-expand-dabbrev-from-kill

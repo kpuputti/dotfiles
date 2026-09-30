@@ -4,3 +4,7 @@
 set -eu
 export PATH="/opt/homebrew/bin:$PATH"
 mise install
+# mise only installs ~/.default-npm-packages into a newly installed Node, so
+# sync the list into the current one as well.
+sed 's/#.*//' "$HOME/.default-npm-packages" | grep -vE '^\s*$' |
+	xargs mise exec node -- npm install --global

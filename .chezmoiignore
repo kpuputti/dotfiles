@@ -1,3 +1,4 @@
 README.md
+AGENTS.md
 # Transition only: live ~/.nodenv/default-packages symlinks to this until the mise cutover
 nodenv-default-packages
