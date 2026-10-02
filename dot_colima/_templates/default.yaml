@@ -1,0 +1,41 @@
+cpu: 8
+disk: 100
+memory: 16
+arch: host
+runtime: docker
+modelRunner: docker
+hostname: null
+kubernetes:
+  enabled: false
+  version: v1.35.0+k3s1
+  k3sArgs: [--disable=traefik]
+  port: 0
+autoActivate: true
+network:
+  address: false
+  mode: shared
+  interface: en0
+  preferredRoute: false
+  dns: []
+  dnsHosts:
+    host.docker.internal: host.lima.internal
+  hostAddresses: false
+  gatewayAddress: 192.168.5.2
+forwardAgent: false
+docker: {}
+vmType: vz
+portForwarder: ssh
+rosetta: true
+binfmt: true
+nestedVirtualization: false
+mountType: virtiofs
+mountInotify: false
+cpuType: host
+provision: []
+sshConfig: true
+sshPort: 0
+mounts: []
+diskImage: ""
+forceDiskImage: false
+rootDisk: 20
+env: {}

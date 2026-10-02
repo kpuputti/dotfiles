@@ -70,6 +70,18 @@ brew "kubernetes-cli"
 # Postgres C API library
 brew "libpq"
 
+# Containers
+# Container runtimes on MacOS (and Linux) with minimal setup
+brew "colima", start_service: true
+# Pack, ship and run any application as a lightweight container
+brew "docker"
+# Isolated development environments using Docker
+brew "docker-compose"
+# Docker CLI plugin for extended build capabilities with BuildKit
+brew "docker-buildx"
+# Platform keystore credential helper for Docker
+brew "docker-credential-helper"
+
 # Data & AI
 # Embeddable SQL OLAP Database Management System
 brew "duckdb"

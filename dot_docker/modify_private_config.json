@@ -1,0 +1,20 @@
+#!/bin/sh
+set -eu
+export PATH="/opt/homebrew/bin:$PATH"
+
+current=$(cat)
+if ! command -v jq >/dev/null 2>&1; then
+  printf '%s' "$current"
+  exit 0
+fi
+if [ -z "$current" ]; then
+  current='{}'
+fi
+
+# Docker rewrites the file tab-indented without a trailing newline; match it to avoid diff noise
+printf '%s' "$(printf '%s' "$current" | jq --tab '
+  .credsStore = "osxkeychain"
+  | .cliPluginsExtraDirs = ["/opt/homebrew/lib/docker/cli-plugins"]
+  | .currentContext = "colima"
+  | del(.plugins, .features)
+')"
