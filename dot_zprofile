@@ -1,4 +1,0 @@
-# Docker Desktop CLIs (docker, docker-compose, kubectl, credential helpers)
-export PATH="$PATH:$HOME/.docker/bin"
-
-eval "$(/opt/homebrew/bin/brew shellenv)"

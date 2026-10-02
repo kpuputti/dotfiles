@@ -6,5 +6,8 @@
 # containers: re-pulls all local docker images and prunes — too aggressive/slow.
 disable = ["emacs", "system", "chezmoi", "containers"]
 
+# Answer package managers' own prompts (e.g. brew cask "proceed? [y/n]")
+assume_yes = true
+
 # Run each package manager's cleanup step after upgrading
 cleanup = true
