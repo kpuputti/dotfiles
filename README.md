@@ -120,19 +120,88 @@ up_myrepo() { npm install && npm run migrate; }
 
 ## Follow-ups
 
+In priority order.
+
+### 1. Quick cleanups (low risk)
+
+- Remove dead config:
+  - `dot_zshenv`: `GATSBY_TELEMETRY_DISABLED`, and the global
+    `NODE_ENV=development` (tools like `next build` expect to set it
+    themselves); consider adding `DO_NOT_TRACK=1`
+  - `packages.el`: `ag` (not installed, use `rg`), `jsonrpc` (built into
+    Emacs), `graphql-mode` and its `use-package!` (the `:lang graphql`
+    module provides it), `anzu` (`isearch-lazy-count` is built in),
+    `claude-code-ide` (unused, `agent-shell` is the one configured)
+  - `restclient` is archived upstream: switch to Doom's `:lang rest` or
+    `verb`
+  - Markdown preview is set up twice: `markdown-command` uses pandoc, so
+    the `+grip` flag, `grip` (Brewfile) and `marked` (npm) are likely
+    unused
+- Modernize `dot_gitconfig`: drop `color.ui` (default) and replace
+  `branch.autosetuprebase` with `pull.rebase = true` (then `gpr` is
+  redundant); add `push.autoSetupRemote`, `fetch.prune`,
+  `rebase.autoStash`, `rebase.updateRefs`, `diff.algorithm = histogram`,
+  `merge.conflictStyle = zdiff3`, `init.defaultBranch = main`,
+  `branch.sort = -committerdate`, `commit.verbose`
+- Prune `dot_gitignore` (SVN, SBT, Sass, Sublime, `.tern-port`,
+  `!.gitignore`) down to OS/editor junk plus `mise.local.toml` and
+  `CLAUDE.local.md`; optionally move it to `~/.config/git/ignore` (git's
+  default location) and drop `core.excludesfile`
+- Fix `delete-merged-branches`: it hardcodes `master` and misses
+  squash-merged branches. Reuse `up`'s default-branch detection and also
+  delete branches whose upstream is `[gone]` after `git fetch --prune`
+- Move the `PATH` exports from `.zshenv` to `.zprofile`: macOS's
+  `/etc/zprofile` (`path_helper`) reorders `PATH` after `.zshenv` runs
+- `update`: report pending macOS updates without installing them
+  (`softwareupdate --list`; topgrade's `system` step stays disabled). Add
+  `mas` to the Brewfile so topgrade's `mas` step upgrades App Store apps
+
+### 2. Finish the mise migration
+
 - After the mise soak period, decommission the legacy version managers:
   remove the TRANSITION-marked nodenv/pyenv/tfenv entries (Brewfile, zshrc,
-  `nodenv-default-packages`, `.chezmoiignore`), then
+  `nodenv-default-packages`, `.chezmoiignore`), the `nodenv-sync-defaults`
+  function and the stale nodenv header in `dot_default-npm-packages`, then
   `brew uninstall nodenv pyenv tfenv && brew autoremove`,
   `rm -rf ~/.nodenv ~/.pyenv ~/.zsh/pure ~/Library/pnpm`, and the
   `~/.{zshrc,zshenv,zprofile,gitconfig}.bak` backups
-- With the same change, consider moving global npm tools from
+- With the same change, move global npm tools from
   `dot_default-npm-packages` to mise's npm backend
   (`"npm:prettier" = "latest"` in the mise config): shared across Node
-  versions, updated by `mise upgrade`/topgrade, and any output from
-  `npm ls -g` beyond npm/corepack then becomes visible drift
+  versions, updated by `mise upgrade`/topgrade, and the npm install step in
+  `run_onchange_after_20` can go. Install pnpm as its own mise tool
+  (`pnpm = "10"`), since corepack isn't bundled from Node 25 on.
+  Check that Emacs still finds the formatters: Doom snapshots `PATH` at
+  `doom sync`, so putting mise's shims on `PATH` in `.zprofile` may be needed
+- Python isn't used for development anymore: remove `python` from the mise
+  config (`[tools]` and `idiomatic_version_file_enable_tools`). The gcloud
+  cask and other Homebrew packages pull in Homebrew's Python as a dependency
+
+### 3. Daily-use improvements
+
+- Add CLI tools: `fzf` (Ctrl-T file picker, fzf-tab completion), `zoxide`
+  (replaces the `cd,,,` aliases together with `setopt AUTO_CD`), `delta`
+  (git pager; also `[diff] pager` in the chezmoi config), `bat`
+- `EDITOR`/`core.editor`: `emacsclient -t -a ""` instead of `emacs -nw`,
+  to reuse a running Emacs instead of starting Doom each time
+- 1Password: use its SSH agent and sign commits with SSH
+  (`gpg.format = ssh`); the CLI is already installed
 - Terminal: trialling Ghostty (default keybindings, no tmux) with `proj <name>`
   opening one window per project, instead of iTerm + tmux. If it sticks,
-  remove `tmux` from the Brewfile and `dot_tmux.conf`, and uninstall iTerm
-- Dockerize/sandbox some tools where isolation is useful
-- Evaluate remaining legacy in the dotfiles; modernize and update
+  remove `tmux` from the Brewfile and `dot_tmux.conf`, and uninstall iTerm.
+  Consider `window-save-state = always` and a light/dark theme pair
+
+### 4. Larger changes, when there's slack
+
+- Doom modules: `(company +childframe)` → `(corfu +orderless)`; consider
+  `(lsp +eglot)` (built into Emacs 30, but the `lsp-mode` settings in
+  `config.el` need porting) and whether `(undo +tree)` is still wanted over
+  the default undo-fu
+- Manage macOS defaults (key repeat, Dock, Finder, screenshot location) with
+  a `run_onchange_after_*` script
+- Declare GUI apps installed outside Homebrew (browser, Slack, 1Password app)
+  as casks or `mas` entries, so `brew bundle cleanup` sees all drift
+- Hammerspoon: try macOS's built-in window tiling (Fn+Ctrl+arrows); drop
+  Hammerspoon if it covers enough
+- Re-check the `tree-sitter@0.25, link: true` workaround whenever
+  emacs-plus updates
