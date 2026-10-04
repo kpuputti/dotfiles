@@ -1,0 +1,6 @@
+[nodejs]
+disabled = true
+
+# Shown only where a shell sets this, e.g. a chpwd hook in ~/.zshrc.local
+[gcloud]
+detect_env_vars = ["STARSHIP_GCLOUD"]
