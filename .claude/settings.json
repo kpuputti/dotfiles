@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "defaultMode": "acceptEdits",
+    "allow": [
+      "Read(/**)",
+      "WebSearch",
+      "Bash(~/.emacs.d/bin/doom doctor *)",
+      "Bash(chezmoi diff *)",
+      "Bash(chezmoi status *)",
+      "Bash(chezmoi managed *)",
+      "Bash(chezmoi doctor *)"
+    ],
+    "ask": [
+      "Bash(chezmoi apply *)",
+      "Bash(chezmoi update *)",
+      "Bash(chezmoi init *)",
+      "Bash(*doom sync*)",
+      "Bash(brew bundle *)"
+    ]
+  }
+}
