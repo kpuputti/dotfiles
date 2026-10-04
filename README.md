@@ -117,7 +117,6 @@ relaunch aren't recognised, so `proj` opens a new window for them.
   (`"npm:prettier" = "latest"` in the mise config): shared across Node
   versions, updated by `mise upgrade`/topgrade, and any output from
   `npm ls -g` beyond npm/corepack then becomes visible drift
-- Optional zsh niceties: zsh-autosuggestions, zsh-history-substring-search
 - Terminal: trialling Ghostty (default keybindings, no tmux) with `proj <name>`
   opening one window per project, instead of iTerm + tmux. If it sticks,
   remove `tmux` from the Brewfile and `dot_tmux.conf`, and uninstall iTerm

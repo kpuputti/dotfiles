@@ -10,8 +10,6 @@ alias cd,,,,,="cd ../../../../.."
 alias cd,,,,,,="cd ../../../../../.."
 alias cd,,,,,,,="cd ../../../../../../.."
 
-alias llh="ll --human-readable"
-alias lah="la --human-readable"
 alias tree="tree -C"
 
 alias gs="git status"
@@ -104,8 +102,8 @@ export CLICOLOR=true
 
 # Increase history size
 HISTFILE=~/.zsh_history
-HISTSIZE=1000
-SAVEHIST=10000
+HISTSIZE=50000
+SAVEHIST=50000
 
 # Don't save command to history if it starts with a space
 setopt HIST_IGNORE_SPACE
@@ -120,11 +118,15 @@ bindkey -e
 # .node-version/.terraform-version files)
 eval "$(mise activate zsh)"
 
-# pure prompt https://github.com/sindresorhus/pure (brew formula)
-fpath+=("$(brew --prefix)/share/zsh/site-functions")
-autoload -U promptinit
-promptinit
-prompt pure
+autoload -Uz compinit && compinit
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+# Bash-style completion script, so it's sourced rather than found via fpath
+source /opt/homebrew/share/google-cloud-sdk/completion.zsh.inc
+
+eval "$(starship init zsh)"
+eval "$(atuin init zsh)"
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 _in_pnpm_repo() {
 	local dir=$PWD
@@ -148,3 +150,6 @@ export PATH="/opt/homebrew/share/google-cloud-sdk/bin:$PATH"
 
 # Machine-local additions (work aliases etc.) — not managed by chezmoi
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
+
+# Must stay last: it only highlights widgets defined before it
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

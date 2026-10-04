@@ -17,10 +17,14 @@ brew "pyenv"
 brew "tfenv"
 
 # Shell
-# UNIX shell (command interpreter)
-brew "zsh"
-# Pretty, minimal and fast ZSH prompt
-brew "pure"
+# Cross-shell prompt for astronauts
+brew "starship"
+# Improved shell history for zsh, bash, fish and nushell
+brew "atuin"
+# Fish-like fast/unobtrusive autosuggestions for zsh
+brew "zsh-autosuggestions"
+# Fish shell like syntax highlighting for zsh
+brew "zsh-syntax-highlighting"
 # Terminal multiplexer
 brew "tmux"
 # GNU File, Shell, and Text utilities
