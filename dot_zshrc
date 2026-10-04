@@ -97,6 +97,24 @@ end run
 EOF
 }
 
+# Per-repo extra steps: define up_<repo dir name> in ~/.zshrc.local
+function up() {
+	local root branch
+	root=$(git rev-parse --show-toplevel) || return
+	if [[ -n $(git status --porcelain --untracked-files=no) ]]; then
+		echo "up: uncommitted changes, aborting" >&2
+		return 1
+	fi
+	branch=$(git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null) ||
+		{ git remote set-head origin --auto >/dev/null &&
+			branch=$(git symbolic-ref --short refs/remotes/origin/HEAD); } || return
+	git switch "${branch#origin/}" && git pull --ff-only || return
+	local hook="up_${root:t}"
+	if typeset -f "$hook" >/dev/null; then
+		(cd "$root" && $hook)
+	fi
+}
+
 # Use colors in ls output
 export CLICOLOR=true
 

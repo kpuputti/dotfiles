@@ -44,7 +44,8 @@ hand-edited local file if it exists:
 - `~/.gitconfig.local` — default git email (`[user] email = ...`), work overrides
 - `~/.gitconfig.personal` — personal git email; applied automatically to all
   repos under `~/code/projects/` (via `includeIf` in the gitconfig)
-- `~/.zshrc.local` — work aliases and functions
+- `~/.zshrc.local` — work aliases and functions, including per-repo `up`
+  steps (see below)
 - `~/.zshenv.local` — work env vars, secrets
 - `~/.config/proj/projects` — project layouts for `proj` (see below)
 
@@ -103,6 +104,19 @@ repo:
 
 Missing directories print a warning. Windows restored after a Ghostty
 relaunch aren't recognised, so `proj` opens a new window for them.
+
+## Updating a repo (`up`)
+
+`up` (zsh function), run anywhere in a git repo: aborts if there are staged
+or unstaged changes, switches to the default branch and pulls with
+`--ff-only`.
+
+Extra steps per repo go in `~/.zshrc.local` as a function named
+`up_<repo dir name>`, run from the repo root after the pull:
+
+```zsh
+up_myrepo() { npm install && npm run migrate; }
+```
 
 ## Follow-ups
 
