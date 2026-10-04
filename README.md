@@ -72,7 +72,11 @@ requires the 1Password app's CLI integration. Not currently used.
 - `chezmoi diff` — show drift between repo and live files
 - `chezmoi re-add` — pull a live edit back into the repo
 - `update` (zsh function) — [topgrade](https://github.com/topgrade-rs/topgrade)
-  (steps in `dot_config/topgrade.toml`) + dotfiles/Brewfile sync checks
+  (steps in `dot_config/topgrade.toml`), a list of pending macOS updates
+  (install them from System Settings) + dotfiles/Brewfile sync checks
+- `delete-merged-branches` (zsh function) — updates the default branch,
+  deletes local branches merged into it, then offers to force-delete
+  branches whose upstream is gone (e.g. squash-merged on GitHub)
 - New global CLI tool: add to `dot_Brewfile` (or `dot_default-npm-packages`
   for npm tools), then `chezmoi apply`
 - Emacs: edit `dot_doom.d/`, then `chezmoi apply` (runs `doom sync` when
@@ -122,39 +126,22 @@ up_myrepo() { npm install && npm run migrate; }
 
 In priority order.
 
-### 1. Quick cleanups (low risk)
+### 1. Doom cleanup (low risk)
 
-- Remove dead config:
-  - `dot_zshenv`: `GATSBY_TELEMETRY_DISABLED`, and the global
-    `NODE_ENV=development` (tools like `next build` expect to set it
-    themselves); consider adding `DO_NOT_TRACK=1`
-  - `packages.el`: `ag` (not installed, use `rg`), `jsonrpc` (built into
-    Emacs), `graphql-mode` and its `use-package!` (the `:lang graphql`
-    module provides it), `anzu` (`isearch-lazy-count` is built in),
-    `claude-code-ide` (unused, `agent-shell` is the one configured)
-  - `restclient` is archived upstream: switch to Doom's `:lang rest` or
-    `verb`
-  - Markdown preview is set up twice: `markdown-command` uses pandoc, so
-    the `+grip` flag, `grip` (Brewfile) and `marked` (npm) are likely
-    unused
-- Modernize `dot_gitconfig`: drop `color.ui` (default) and replace
-  `branch.autosetuprebase` with `pull.rebase = true` (then `gpr` is
-  redundant); add `push.autoSetupRemote`, `fetch.prune`,
-  `rebase.autoStash`, `rebase.updateRefs`, `diff.algorithm = histogram`,
-  `merge.conflictStyle = zdiff3`, `init.defaultBranch = main`,
-  `branch.sort = -committerdate`, `commit.verbose`
-- Prune `dot_gitignore` (SVN, SBT, Sass, Sublime, `.tern-port`,
-  `!.gitignore`) down to OS/editor junk plus `mise.local.toml` and
-  `CLAUDE.local.md`; optionally move it to `~/.config/git/ignore` (git's
-  default location) and drop `core.excludesfile`
-- Fix `delete-merged-branches`: it hardcodes `master` and misses
-  squash-merged branches. Reuse `up`'s default-branch detection and also
-  delete branches whose upstream is `[gone]` after `git fetch --prune`
-- Move the `PATH` exports from `.zshenv` to `.zprofile`: macOS's
-  `/etc/zprofile` (`path_helper`) reorders `PATH` after `.zshenv` runs
-- `update`: report pending macOS updates without installing them
-  (`softwareupdate --list`; topgrade's `system` step stays disabled). Add
-  `mas` to the Brewfile so topgrade's `mas` step upgrades App Store apps
+- `packages.el`, remove:
+  - `graphql-mode` and its `use-package!` in `config.el` (the
+    `:lang graphql` module installs it)
+  - `anzu` (`:ui modeline` installs it; keep the `after!` in `config.el`
+    that turns it on, nothing else does without evil)
+  - `ag` (not installed, nothing uses it), `jsonrpc` (nothing installed
+    requires it; Doom only adds it for `lsp +eglot`)
+  - `claude-code-ide` (unused, `agent-shell` is the one configured)
+- Replace `(package! restclient)` with `rest` under `:lang` in `init.el`
+  (Doom pins it and maps `*.http` files; restclient is maintained under
+  emacsorphanage, not archived)
+- Markdown preview: `config.el` sets `markdown-command` to pandoc, so the
+  `+grip` flag, `grip` (Brewfile) and the `marked`, `js-beautify`,
+  `stylelint` npm packages are unused (apheleia formats with prettier)
 
 ### 2. Finish the mise migration
 

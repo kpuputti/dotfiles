@@ -1,1 +1,5 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Here rather than .zshenv: /etc/zprofile's path_helper would reorder them
+export PATH="$HOME/.emacs.d/bin:$PATH"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"

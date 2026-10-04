@@ -13,18 +13,42 @@ alias cd,,,,,,,="cd ../../../../../../.."
 alias tree="tree -C"
 
 alias gs="git status"
-alias gpr="git pull --rebase"
 
 ## Functions
 
+function _git_default_branch() {
+	local ref
+	ref=$(git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null) ||
+		{ git remote set-head origin --auto >/dev/null &&
+			ref=$(git symbolic-ref --short refs/remotes/origin/HEAD); } || return
+	echo "${ref#origin/}"
+}
+
 function delete-merged-branches() {
-	git checkout master && git branch --merged | grep -v master | xargs git branch -d
+	local branch reply
+	local -a merged gone
+	branch=$(_git_default_branch) || return
+	git switch "$branch" && git pull --ff-only || return
+	merged=(${(f)"$(git branch --format='%(refname:short)' --merged)"})
+	merged=(${merged:#$branch})
+	((! $#merged)) || git branch -d $merged
+	# Squash-merged branches aren't "merged", but their upstream was deleted on merge
+	gone=(${(f)"$(git for-each-ref refs/heads \
+		--format='%(if:equals=[gone])%(upstream:track)%(then)%(refname:short)%(end)')"})
+	((! $#gone)) && return
+	print -l 'Upstream deleted:' $gone
+	read -q "reply?Force-delete these? [y/N] "
+	echo
+	[[ $reply == y ]] && git branch -D $gone
 }
 
 function update() {
 	# brew/mise/npm/gcloud etc. — steps configured in ~/.config/topgrade.toml
 	echo '==> topgrade'
 	topgrade
+	echo '==> macOS updates'
+	# Lists only; installing is left to System Settings
+	softwareupdate --list
 	echo '==> dotfiles sync check'
 	local dotfiles="$(chezmoi source-path)"
 	chezmoi verify || echo '!!> live dotfiles differ from repo, run: chezmoi diff'
@@ -105,10 +129,8 @@ function up() {
 		echo "up: uncommitted changes, aborting" >&2
 		return 1
 	fi
-	branch=$(git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null) ||
-		{ git remote set-head origin --auto >/dev/null &&
-			branch=$(git symbolic-ref --short refs/remotes/origin/HEAD); } || return
-	git switch "${branch#origin/}" && git pull --ff-only || return
+	branch=$(_git_default_branch) || return
+	git switch "$branch" && git pull --ff-only || return
 	local hook="up_${root:t}"
 	if typeset -f "$hook" >/dev/null; then
 		(cd "$root" && $hook)

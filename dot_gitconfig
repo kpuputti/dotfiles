@@ -2,16 +2,33 @@
 	name = Kimmo Puputti
 [core]
 	editor = emacs -nw
-	excludesfile = ~/.gitignore
-[color]
-	ui = true
+[init]
+	defaultBranch = main
 [alias]
 	co = checkout
 	br = branch
 	ci = commit
 	st = status
+[pull]
+	rebase = true
+[push]
+	autoSetupRemote = true
+[fetch]
+	prune = true
+[rebase]
+	autoStash = true
+	updateRefs = true
+[diff]
+	algorithm = histogram
+	colorMoved = plain
+[merge]
+	conflictStyle = zdiff3
 [branch]
-	autosetuprebase = always
+	sort = -committerdate
+[commit]
+	verbose = true
+[help]
+	autocorrect = prompt
 [rerere]
 	enabled = true
 

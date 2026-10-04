@@ -7,6 +7,8 @@ brew "chezmoi"
 brew "mise"
 # Upgrade all the things (drives the `update` zsh function)
 brew "topgrade"
+# Mac App Store command-line interface (topgrade upgrades App Store apps with it)
+brew "mas"
 
 # TRANSITION: legacy version managers, replaced by mise — remove after mise soak
 # Node.js version manager
