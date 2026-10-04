@@ -97,6 +97,8 @@ cask "claude-code"
 cask "codex"
 # Set of tools to manage resources and applications hosted on Google Cloud
 cask "gcloud-cli"
+# Terminal emulator that uses platform-native UI and GPU acceleration
+cask "ghostty"
 # Desktop automation application
 cask "hammerspoon"
 # Reverse proxy, secure introspectable tunnels to localhost

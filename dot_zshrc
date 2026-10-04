@@ -54,6 +54,65 @@ function update() {
 	# doom upgrade is deliberately not here: it can break the editor, run it separately
 }
 
+# Projects live in ~/.config/proj/projects (kept out of git): a [name] line,
+# then one tab directory per line.
+function proj() {
+	local config="$HOME/.config/proj/projects"
+	local name=$1 line current project
+	local -a dirs
+	if [[ -z $name ]]; then
+		sed -n 's/^\[\(.*\)\]$/\1/p' "$config"
+		return
+	fi
+	if [[ $name == all ]]; then
+		for project in $(proj); do
+			proj "$project" || return
+		done
+		return
+	fi
+	while IFS= read -r line || [[ -n $line ]]; do
+		if [[ $line == \[*\] ]]; then
+			current=${line:1:-1}
+		elif [[ $current == "$name" && -n $line && $line != \#* ]]; then
+			dirs+=("${line/#\~/$HOME}")
+			# Ghostty silently falls back to another directory for a missing one
+			[[ -d ${dirs[-1]} ]] || echo "proj: missing directory ${dirs[-1]}" >&2
+		fi
+	done < "$config"
+	if (( ! $#dirs )); then
+		echo "proj: no project '$name' in $config" >&2
+		return 1
+	fi
+	# Window ids only survive while Ghostty runs; a stale id just opens a new window
+	local state="$HOME/.cache/proj/$name"
+	mkdir -p "${state:h}"
+	local saved_id="$(cat "$state" 2>/dev/null)"
+	osascript - "$saved_id" "${dirs[@]}" > "$state" <<'EOF'
+on run argv
+	set savedId to item 1 of argv
+	set dirs to rest of argv
+	tell application "Ghostty"
+		activate
+		repeat with w in windows
+			if id of w is savedId then
+				activate window w
+				return savedId
+			end if
+		end repeat
+		set cfg to new surface configuration
+		set initial working directory of cfg to item 1 of dirs
+		set win to new window with configuration cfg
+		repeat with d in rest of dirs
+			set initial working directory of cfg to contents of d
+			new tab in win with configuration cfg
+		end repeat
+		select tab (tab 1 of win)
+		return id of win
+	end tell
+end run
+EOF
+}
+
 # Use colors in ls output
 export CLICOLOR=true
 

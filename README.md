@@ -46,6 +46,7 @@ hand-edited local file if it exists:
   repos under `~/code/projects/` (via `includeIf` in the gitconfig)
 - `~/.zshrc.local` — work aliases and functions
 - `~/.zshenv.local` — work env vars, secrets
+- `~/.config/proj/projects` — project layouts for `proj` (see below)
 
 If a secret is ever needed in a managed file, chezmoi can read 1Password at
 apply time (`onepasswordRead "op://vault/item/field"` in a `.tmpl` file) —
@@ -81,6 +82,28 @@ requires the 1Password app's CLI integration. Not currently used.
   `colima start --edit`, or `colima delete` (wipes all images, containers and
   volumes) and `colima start` to rebuild it from the template
 
+## Terminal projects (`proj`)
+
+`proj` (zsh function) opens a Ghostty window per project, with one tab per
+configured directory:
+
+- `proj` — list projects
+- `proj <name>` — open the project, or bring its window to the front if
+  `proj` already opened it
+- `proj all` — open every project
+
+Projects are defined in `~/.config/proj/projects`, which is kept out of the
+repo:
+
+```
+[myproject]
+~/path/to/myproject
+~/path/to/myproject/subdir
+```
+
+Missing directories print a warning. Windows restored after a Ghostty
+relaunch aren't recognised, so `proj` opens a new window for them.
+
 ## Follow-ups
 
 - After the mise soak period, decommission the legacy version managers:
@@ -95,7 +118,8 @@ requires the 1Password app's CLI integration. Not currently used.
   versions, updated by `mise upgrade`/topgrade, and any output from
   `npm ls -g` beyond npm/corepack then becomes visible drift
 - Optional zsh niceties: zsh-autosuggestions, zsh-history-substring-search
-- Modernize the terminal setup from iTerm/zsh/tmux to something modern
-  (separate research: e.g. Ghostty/WezTerm, zellij, fish/nushell)
+- Terminal: trialling Ghostty (default keybindings, no tmux) with `proj <name>`
+  opening one window per project, instead of iTerm + tmux. If it sticks,
+  remove `tmux` from the Brewfile and `dot_tmux.conf`, and uninstall iTerm
 - Dockerize/sandbox some tools where isolation is useful
 - Evaluate remaining legacy in the dotfiles; modernize and update
