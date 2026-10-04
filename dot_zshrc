@@ -28,7 +28,7 @@ function update() {
 	echo '==> dotfiles sync check'
 	local dotfiles="$(chezmoi source-path)"
 	chezmoi verify || echo '!!> live dotfiles differ from repo, run: chezmoi diff'
-	# dry run: lists anything installed that the Brewfile doesn't declare
+	# Prompts before uninstalling anything the Brewfile doesn't declare
 	brew bundle cleanup --global
 	[[ -n "$(git -C "$dotfiles" status --porcelain)" ]] &&
 		echo '!!> dotfiles repo has uncommitted changes'
