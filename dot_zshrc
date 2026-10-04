@@ -15,23 +15,9 @@ alias lah="la --human-readable"
 alias tree="tree -C"
 
 alias gs="git status"
-alias gb="git branch"
-alias gd="git diff"
-alias gdc="git diff --cached"
-alias gl="git log"
-alias glo="git log --oneline"
-alias glp="git log --patch"
-alias gc="git commit"
-alias ga="git add"
-alias gco="git checkout"
+alias gpr="git pull --rebase"
 
 ## Functions
-
-function git-publish() {
-	# Merge changes from master branch into the gh-pages branch and
-	# push them to the origin gh-pages branch.
-	git checkout gh-pages && git merge master && git push origin gh-pages && git checkout master
-}
 
 function delete-merged-branches() {
 	git checkout master && git branch --merged | grep -v master | xargs git branch -d
@@ -78,8 +64,8 @@ function proj() {
 			# Ghostty silently falls back to another directory for a missing one
 			[[ -d ${dirs[-1]} ]] || echo "proj: missing directory ${dirs[-1]}" >&2
 		fi
-	done < "$config"
-	if (( ! $#dirs )); then
+	done <"$config"
+	if ((! $#dirs)); then
 		echo "proj: no project '$name' in $config" >&2
 		return 1
 	fi
@@ -87,7 +73,7 @@ function proj() {
 	local state="$HOME/.cache/proj/$name"
 	mkdir -p "${state:h}"
 	local saved_id="$(cat "$state" 2>/dev/null)"
-	osascript - "$saved_id" "${dirs[@]}" > "$state" <<'EOF'
+	osascript - "$saved_id" "${dirs[@]}" >"$state" <<'EOF'
 on run argv
 	set savedId to item 1 of argv
 	set dirs to rest of argv
