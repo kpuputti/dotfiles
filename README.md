@@ -126,24 +126,7 @@ up_myrepo() { npm install && npm run migrate; }
 
 In priority order.
 
-### 1. Doom cleanup (low risk)
-
-- `packages.el`, remove:
-  - `graphql-mode` and its `use-package!` in `config.el` (the
-    `:lang graphql` module installs it)
-  - `anzu` (`:ui modeline` installs it; keep the `after!` in `config.el`
-    that turns it on, nothing else does without evil)
-  - `ag` (not installed, nothing uses it), `jsonrpc` (nothing installed
-    requires it; Doom only adds it for `lsp +eglot`)
-  - `claude-code-ide` (unused, `agent-shell` is the one configured)
-- Replace `(package! restclient)` with `rest` under `:lang` in `init.el`
-  (Doom pins it and maps `*.http` files; restclient is maintained under
-  emacsorphanage, not archived)
-- Markdown preview: `config.el` sets `markdown-command` to pandoc, so the
-  `+grip` flag, `grip` (Brewfile) and the `marked`, `js-beautify`,
-  `stylelint` npm packages are unused (apheleia formats with prettier)
-
-### 2. Finish the mise migration
+### 1. Finish the mise migration
 
 - After the mise soak period, decommission the legacy version managers:
   remove the TRANSITION-marked nodenv/pyenv/tfenv entries (Brewfile, zshrc,
@@ -164,31 +147,55 @@ In priority order.
   config (`[tools]` and `idiomatic_version_file_enable_tools`). The gcloud
   cask and other Homebrew packages pull in Homebrew's Python as a dependency
 
-### 3. Daily-use improvements
+### 2. Daily-use improvements
 
 - Add CLI tools: `fzf` (Ctrl-T file picker, fzf-tab completion), `zoxide`
   (replaces the `cd,,,` aliases together with `setopt AUTO_CD`), `delta`
   (git pager; also `[diff] pager` in the chezmoi config), `bat`
-- `EDITOR`/`core.editor`: `emacsclient -t -a ""` instead of `emacs -nw`,
-  to reuse a running Emacs instead of starting Doom each time
 - 1Password: use its SSH agent and sign commits with SSH
   (`gpg.format = ssh`); the CLI is already installed
 - Terminal: trialling Ghostty (default keybindings, no tmux) with `proj <name>`
   opening one window per project, instead of iTerm + tmux. If it sticks,
-  remove `tmux` from the Brewfile and `dot_tmux.conf`, and uninstall iTerm.
-  Consider `window-save-state = always` and a light/dark theme pair
+  remove `tmux` from the Brewfile and `dot_tmux.conf`, and uninstall iTerm
+
+### 3. Emacs
+
+- Upgrade to Emacs 31.1 (released August 2026; Doom supports and recommends
+  it): `emacs-plus@30` → `emacs-plus@31` in the Brewfile. Doom is also
+  behind upstream, so do it together with `doom upgrade`. Afterwards:
+  - Run `doom sync --rebuild` from your own terminal: packages compiled
+    for Emacs 30 need rebuilding, and the run script only syncs when
+    `init.el`/`packages.el` change
+  - `emacs-plus@31` depends on the regular `tree-sitter` formula, so the
+    `tree-sitter@0.25, link: true` workaround can probably go
+  - Check the emacs-plus `PATH` workaround in `config.el`
+    (`ns-emacs-plus-injected-path`) still applies
+- Doom cleanup (low risk):
+  - `packages.el`, remove `graphql-mode` and its `use-package!` in
+    `config.el` (the `:lang graphql` module installs it); `anzu`
+    (`:ui modeline` installs it; keep the `after!` in `config.el` that turns
+    it on, nothing else does without evil); `ag` (not installed, nothing uses
+    it); `jsonrpc` (nothing installed requires it; Doom only adds it for
+    `lsp +eglot`); `claude-code-ide` (unused, `agent-shell` is the one
+    configured)
+  - Replace `(package! restclient)` with `rest` under `:lang` in `init.el`
+    (Doom pins it and maps `*.http` files; restclient is maintained under
+    emacsorphanage, not archived)
+  - Markdown preview: `config.el` sets `markdown-command` to pandoc, so the
+    `+grip` flag, `grip` (Brewfile) and the `marked`, `js-beautify`,
+    `stylelint` npm packages are unused (apheleia formats with prettier)
+- `EDITOR`/`core.editor`: `emacsclient -t -a ""` instead of `emacs -nw`,
+  to reuse a running Emacs instead of starting Doom each time
+- Doom modules, when there's slack: `(company +childframe)` →
+  `(corfu +orderless)`; consider `(lsp +eglot)` (built into Emacs, but the
+  `lsp-mode` settings in `config.el` need porting) and whether
+  `(undo +tree)` is still wanted over the default undo-fu
 
 ### 4. Larger changes, when there's slack
 
-- Doom modules: `(company +childframe)` → `(corfu +orderless)`; consider
-  `(lsp +eglot)` (built into Emacs 30, but the `lsp-mode` settings in
-  `config.el` need porting) and whether `(undo +tree)` is still wanted over
-  the default undo-fu
 - Manage macOS defaults (key repeat, Dock, Finder, screenshot location) with
   a `run_onchange_after_*` script
 - Declare GUI apps installed outside Homebrew (browser, Slack, 1Password app)
   as casks or `mas` entries, so `brew bundle cleanup` sees all drift
 - Hammerspoon: try macOS's built-in window tiling (Fn+Ctrl+arrows); drop
   Hammerspoon if it covers enough
-- Re-check the `tree-sitter@0.25, link: true` workaround whenever
-  emacs-plus updates
