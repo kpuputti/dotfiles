@@ -1,4 +1,16 @@
+[buf]
+disabled = true
+
+[docker_context]
+disabled = true
+
+[dotnet]
+disabled = true
+
 [nodejs]
+disabled = true
+
+[ruby]
 disabled = true
 
 # Shown only where a shell sets this, e.g. a chpwd hook in ~/.zshrc.local
