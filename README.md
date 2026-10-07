@@ -191,11 +191,35 @@ In priority order.
   `lsp-mode` settings in `config.el` need porting) and whether
   `(undo +tree)` is still wanted over the default undo-fu
 
-### 4. Larger changes, when there's slack
+### 4. Declare GUI apps in the Brewfile
+
+Apps installed by hand need a one-time
+`brew install --cask --adopt <token>` before `brew bundle` manages them.
+`brew bundle cleanup` doesn't report undeclared `mas` apps.
+
+- Browsers: `cask "google-chrome"`, `cask "google-chrome@canary"`,
+  `cask "firefox"`
+- `cask "1password"`
+- Messengers: `cask "signal"`, `cask "wire"` (replaces the App Store copy:
+  delete the App Store app, then install the cask). Before switching either
+  one, export a backup of its message history, so it can be imported into
+  the new install if the new install doesn't pick up the existing data
+- `cask "datagrip"`
+- Safari extensions: `mas "1Password for Safari", id: 1569813296`,
+  `mas "SponsorBlock", id: 1573461917`,
+  `mas "uBlock Origin Lite", id: 6745342698`
+- `cask "tailscale-app"` (the installed standalone build, not the App Store
+  one)
+- Apple apps: `mas "GarageBand", id: 682658836`,
+  `mas "iMovie", id: 408981434`, `mas "Numbers", id: 361304891`,
+  `mas "Pages", id: 361309726`. The installed Numbers and Pages 14.5 are
+  delisted older versions (`Pages Creator Studio.app` is the current Pages);
+  remove the old copies
+- Not declarable: Chrome and Firefox extensions (use browser sync)
+
+### 5. Larger changes, when there's slack
 
 - Manage macOS defaults (key repeat, Dock, Finder, screenshot location) with
   a `run_onchange_after_*` script
-- Declare GUI apps installed outside Homebrew (browser, Slack, 1Password app)
-  as casks or `mas` entries, so `brew bundle cleanup` sees all drift
 - Hammerspoon: try macOS's built-in window tiling (Fn+Ctrl+arrows); drop
   Hammerspoon if it covers enough
