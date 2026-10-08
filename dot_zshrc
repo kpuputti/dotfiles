@@ -154,7 +154,7 @@ unsetopt beep
 # Use Emacs mode in zle (zsh line editor)
 bindkey -e
 
-# mise manages node/terraform/python (~/.config/mise/config.toml + per-project
+# mise manages node/terraform (~/.config/mise/config.toml + per-project
 # .node-version/.terraform-version files)
 eval "$(mise activate zsh)"
 

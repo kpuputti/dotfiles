@@ -6,8 +6,8 @@ Declarative machine setup, managed with [chezmoi](https://www.chezmoi.io/):
   to `$HOME`
 - **Homebrew packages**: `dot_Brewfile` → `~/.Brewfile`, applied with
   `brew bundle --global`
-- **Language runtimes**: [mise](https://mise.jdx.dev/) (node, terraform,
-  python) via `dot_config/mise/config.toml`; per-project versions from
+- **Language runtimes**: [mise](https://mise.jdx.dev/) (node, terraform)
+  via `dot_config/mise/config.toml`; per-project versions from
   `.node-version` / `.terraform-version` files
 - **Global npm packages**: `dot_default-npm-packages` →
   `~/.default-npm-packages`, installed by mise into every Node version
@@ -140,9 +140,6 @@ In priority order.
 - Remove the duplicate global npm tools installed with Homebrew's Node
   (`/opt/homebrew/lib/node_modules`: prettier, pnpm, claude-agent-acp etc.).
   Homebrew's Node itself stays as a `gemini-cli` dependency
-- Python isn't used for development anymore: remove `python` from the mise
-  config (`[tools]` and `idiomatic_version_file_enable_tools`). The gcloud
-  cask and other Homebrew packages pull in Homebrew's Python as a dependency
 
 ### 2. Daily-use improvements
 
