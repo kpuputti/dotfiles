@@ -200,8 +200,7 @@ app to the Trash and run `brew install --cask <token>` instead; app data in
 `~/Library` is kept.
 `brew bundle cleanup` doesn't report undeclared `mas` apps.
 
-- Browsers: `cask "google-chrome"`, `cask "google-chrome@canary"`,
-  `cask "firefox"`
+- `cask "google-chrome"`
 - `cask "1password"`
 - `cask "wire"` (replaces the App Store copy: delete the App Store app, then
   install the cask). The message history is already backed up. On hold:

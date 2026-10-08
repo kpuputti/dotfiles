@@ -101,10 +101,14 @@ cask "1password-cli"
 cask "claude-code"
 # OpenAI's coding agent that runs in your terminal
 cask "codex"
+# Web browser
+cask "firefox"
 # Set of tools to manage resources and applications hosted on Google Cloud
 cask "gcloud-cli"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
+# Web browser
+cask "google-chrome@canary"
 # Desktop automation application
 cask "hammerspoon"
 # Reverse proxy, secure introspectable tunnels to localhost
