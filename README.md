@@ -128,21 +128,18 @@ In priority order.
 
 ### 1. Finish the mise migration
 
-- After the mise soak period, decommission the legacy version managers:
-  remove the TRANSITION-marked nodenv/pyenv/tfenv entries (Brewfile, zshrc,
-  `nodenv-default-packages`, `.chezmoiignore`), the `nodenv-sync-defaults`
-  function and the stale nodenv header in `dot_default-npm-packages`, then
-  `brew uninstall nodenv pyenv tfenv && brew autoremove`,
-  `rm -rf ~/.nodenv ~/.pyenv ~/.zsh/pure ~/Library/pnpm`, and the
-  `~/.{zshrc,zshenv,zprofile,gitconfig}.bak` backups
-- With the same change, move global npm tools from
-  `dot_default-npm-packages` to mise's npm backend
-  (`"npm:prettier" = "latest"` in the mise config): shared across Node
-  versions, updated by `mise upgrade`/topgrade, and the npm install step in
-  `run_onchange_after_20` can go. Install pnpm as its own mise tool
-  (`pnpm = "10"`), since corepack isn't bundled from Node 25 on.
-  Check that Emacs still finds the formatters: Doom snapshots `PATH` at
-  `doom sync`, so putting mise's shims on `PATH` in `.zprofile` may be needed
+- Move global npm tools from `dot_default-npm-packages` to mise's npm
+  backend (`"npm:prettier" = "latest"` in the mise config): shared across
+  Node versions, updated by `mise upgrade`/topgrade, and the npm install step
+  in `run_onchange_after_20` can go. Install pnpm as its own mise tool
+  (`pnpm = "10"`), since corepack isn't bundled from Node 25 on. Emacs
+  currently finds the tools via `~/.local/share/mise/installs/node/24/bin` in
+  the `PATH` Doom saved at the last `doom sync`, so after the move run
+  `doom sync` from a terminal (not an agent session) and check that the
+  formatters and agent-shell (`claude-agent-acp`) still work
+- Remove the duplicate global npm tools installed with Homebrew's Node
+  (`/opt/homebrew/lib/node_modules`: prettier, pnpm, claude-agent-acp etc.).
+  Homebrew's Node itself stays as a `gemini-cli` dependency
 - Python isn't used for development anymore: remove `python` from the mise
   config (`[tools]` and `idiomatic_version_file_enable_tools`). The gcloud
   cask and other Homebrew packages pull in Homebrew's Python as a dependency

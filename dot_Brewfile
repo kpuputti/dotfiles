@@ -10,14 +10,6 @@ brew "topgrade"
 # Mac App Store command-line interface (topgrade upgrades App Store apps with it)
 brew "mas"
 
-# TRANSITION: legacy version managers, replaced by mise — remove after mise soak
-# Node.js version manager
-brew "nodenv"
-# Python version management
-brew "pyenv"
-# Terraform version manager inspired by rbenv
-brew "tfenv"
-
 # Shell
 # Cross-shell prompt for astronauts
 brew "starship"

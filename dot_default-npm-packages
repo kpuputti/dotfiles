@@ -1,8 +1,4 @@
-# npm packages installed into every Node version by the
-# nodenv-default-packages plugin (runs on `nodenv install`).
-# Symlinked to ~/.nodenv/default-packages.
-# To install these into the *current* version without reinstalling Node:
-#   nodenv-sync-defaults   (defined in ~/.zshrc)
+# npm packages mise installs into every Node version
 
 # Package manager
 pnpm

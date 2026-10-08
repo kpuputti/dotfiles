@@ -179,13 +179,6 @@ _in_pnpm_repo() {
 npm() { if _in_pnpm_repo; then pnpm "$@"; else command npm "$@"; fi; }
 npx() { if _in_pnpm_repo; then pnpm exec "$@"; else command npx "$@"; fi; }
 
-# TRANSITION: install the nodenv default-packages list into the current Node
-# version (nodenv-default-packages only runs on `nodenv install`).
-nodenv-sync-defaults() {
-	sed 's/#.*//' "$(nodenv root)/default-packages" | grep -vE '^\s*$' |
-		xargs nodenv exec npm install --global
-}
-
 export PATH="/opt/homebrew/share/google-cloud-sdk/bin:$PATH"
 
 # Machine-local additions (work aliases etc.) — not managed by chezmoi
