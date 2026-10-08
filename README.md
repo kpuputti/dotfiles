@@ -65,6 +65,18 @@ requires the 1Password app's CLI integration. Not currently used.
 5. Create the machine-local files (see above), at minimum
    `~/.gitconfig.local` with the git email
 6. Open a new terminal.
+7. macOS settings, by hand in System Settings / Finder:
+   - Keyboard: key repeat rate and delay until repeat both at the fastest;
+     Keyboard Shortcuts → Modifier Keys: Caps Lock → Control (set per
+     keyboard)
+   - Keyboard → Text Input → Edit: auto-correct, auto-capitalisation,
+     double-space full stop, smart quotes and dashes all off
+   - Appearance: Auto
+   - Desktop & Dock: automatically hide the Dock; Hot Corners: bottom right
+     off
+   - Finder settings: show all filename extensions, new windows open the
+     Desktop; list view as the default (View → as List, then View → Show
+     View Options → Use as Defaults)
 
 ## Daily use
 
@@ -217,8 +229,3 @@ app to the Trash and run `brew install --cask <token>` instead; app data in
 - `cask "tailscale-app"` (the installed standalone build, not the App Store
   one)
 - Not declarable: Chrome and Firefox extensions (use browser sync)
-
-### 5. Larger changes, when there's slack
-
-- Manage macOS defaults (key repeat, Dock, Finder, screenshot location) with
-  a `run_onchange_after_*` script
