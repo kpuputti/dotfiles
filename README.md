@@ -195,17 +195,18 @@ In priority order.
 
 Apps installed by hand need a one-time
 `brew install --cask --adopt <token>` before `brew bundle` manages them.
+If macOS blocks the adopt (`chmod ... Operation not permitted`), move the
+app to the Trash and run `brew install --cask <token>` instead; app data in
+`~/Library` is kept.
 `brew bundle cleanup` doesn't report undeclared `mas` apps.
 
 - Browsers: `cask "google-chrome"`, `cask "google-chrome@canary"`,
   `cask "firefox"`
 - `cask "1password"`
-- Messengers: `cask "signal"`, `cask "wire"` (replaces the App Store copy:
-  delete the App Store app, then install the cask). Before switching either
-  one, export a backup of its message history, so it can be imported into
-  the new install if the new install doesn't pick up the existing data.
-  Wire is on hold: Homebrew disabled the `wire` cask on 2026-09-01 (fails
-  Gatekeeper), so keep the App Store copy until the cask is re-enabled
+- `cask "wire"` (replaces the App Store copy: delete the App Store app, then
+  install the cask). The message history is already backed up. On hold:
+  Homebrew disabled the `wire` cask on 2026-09-01 (fails Gatekeeper), so keep
+  the App Store copy until the cask is re-enabled
 - `cask "datagrip"`
 - Safari extensions: `mas "1Password for Safari", id: 1569813296`,
   `mas "SponsorBlock", id: 1573461917`,

@@ -109,5 +109,7 @@ cask "ghostty"
 cask "hammerspoon"
 # Reverse proxy, secure introspectable tunnels to localhost
 cask "ngrok"
+# Instant messaging application focusing on security
+cask "signal"
 # Multimedia player
 cask "vlc"
