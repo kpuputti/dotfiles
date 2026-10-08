@@ -222,5 +222,3 @@ app to the Trash and run `brew install --cask <token>` instead; app data in
 
 - Manage macOS defaults (key repeat, Dock, Finder, screenshot location) with
   a `run_onchange_after_*` script
-- Hammerspoon: try macOS's built-in window tiling (Fn+Ctrl+arrows); drop
-  Hammerspoon if it covers enough
