@@ -113,3 +113,7 @@ cask "ngrok"
 cask "signal"
 # Multimedia player
 cask "vlc"
+
+# Mac App Store
+mas "GarageBand", id: 682658836
+mas "Numbers", id: 361304891
