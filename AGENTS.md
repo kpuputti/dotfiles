@@ -1,5 +1,10 @@
 # Working in this repo
 
+This repo is public. Never add sensitive or personal details: secrets,
+emails, hostnames, work or employer specifics, or details of this machine
+such as key file names. Those belong in the machine-local override files
+(see `README.md`).
+
 ## Where config lives
 
 This repo is the chezmoi source for everything it manages. Read and edit

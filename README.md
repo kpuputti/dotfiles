@@ -143,8 +143,20 @@ In priority order.
 
 ### 2. Daily-use improvements
 
-- 1Password: use its SSH agent and sign commits with SSH
-  (`gpg.format = ssh`); the CLI is already installed
+- 1Password SSH agent and SSH commit signing. Not urgent, and it touches
+  the 1Password app the work setup relies on, so do it when there's time to
+  test:
+  - Agent: the GitHub SSH key moves into 1Password, so
+    there's no key file on disk for malware to copy, use needs Touch ID
+    approval, and the key syncs to new machines. Import the key, enable the
+    agent (Settings → Developer), set `IdentityAgent` to 1Password's
+    `agent.sock` in `~/.ssh/config` (drop `IdentityFile`/`UseKeychain`;
+    bring the file into this repo), then delete the key file
+  - Signing: GitHub shows commits as Verified. In the gitconfig set
+    `gpg.format = ssh`, `gpg "ssh".program` to
+    `/Applications/1Password.app/Contents/MacOS/op-ssh-sign`,
+    `user.signingkey` to the public key and `commit.gpgsign = true`, and add
+    the key on GitHub as a signing key
 
 ### 3. Emacs
 
