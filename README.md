@@ -203,7 +203,9 @@ Apps installed by hand need a one-time
 - Messengers: `cask "signal"`, `cask "wire"` (replaces the App Store copy:
   delete the App Store app, then install the cask). Before switching either
   one, export a backup of its message history, so it can be imported into
-  the new install if the new install doesn't pick up the existing data
+  the new install if the new install doesn't pick up the existing data.
+  Wire is on hold: Homebrew disabled the `wire` cask on 2026-09-01 (fails
+  Gatekeeper), so keep the App Store copy until the cask is re-enabled
 - `cask "datagrip"`
 - Safari extensions: `mas "1Password for Safari", id: 1569813296`,
   `mas "SponsorBlock", id: 1573461917`,
