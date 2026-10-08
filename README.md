@@ -207,9 +207,6 @@ app to the Trash and run `brew install --cask <token>` instead; app data in
   Homebrew disabled the `wire` cask on 2026-09-01 (fails Gatekeeper), so keep
   the App Store copy until the cask is re-enabled
 - `cask "datagrip"`
-- Safari extensions: `mas "1Password for Safari", id: 1569813296`,
-  `mas "SponsorBlock", id: 1573461917`,
-  `mas "uBlock Origin Lite", id: 6745342698`
 - `cask "tailscale-app"` (the installed standalone build, not the App Store
   one)
 - Not declarable: Chrome and Firefox extensions (use browser sync)
