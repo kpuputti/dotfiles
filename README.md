@@ -2,7 +2,7 @@
 
 Declarative machine setup, managed with [chezmoi](https://www.chezmoi.io/):
 
-- **Dotfiles**: zsh, git, tmux, Hammerspoon — files in this repo, applied
+- **Dotfiles**: zsh, git, Ghostty, Hammerspoon — files in this repo, applied
   to `$HOME`
 - **Homebrew packages**: `dot_Brewfile` → `~/.Brewfile`, applied with
   `brew bundle --global`
@@ -148,9 +148,6 @@ In priority order.
   (git pager; also `[diff] pager` in the chezmoi config), `bat`
 - 1Password: use its SSH agent and sign commits with SSH
   (`gpg.format = ssh`); the CLI is already installed
-- Terminal: trialling Ghostty (default keybindings, no tmux) with `proj <name>`
-  opening one window per project, instead of iTerm + tmux. If it sticks,
-  remove `tmux` from the Brewfile and `dot_tmux.conf`, and uninstall iTerm
 
 ### 3. Emacs
 

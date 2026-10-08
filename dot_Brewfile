@@ -19,8 +19,6 @@ brew "atuin"
 brew "zsh-autosuggestions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
-# Terminal multiplexer
-brew "tmux"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
 # Display directories as trees (with optional color/HTML output)
