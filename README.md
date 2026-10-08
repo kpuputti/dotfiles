@@ -148,13 +148,30 @@ In priority order.
   currently finds the tools via `~/.local/share/mise/installs/node/24/bin` in
   the `PATH` Doom saved at the last `doom sync`, so after the move run
   `doom sync` from a terminal (not an agent session) and check that the
-  formatters and agent-shell (`claude-agent-acp`) still work
+  formatters and agent-shell (`claude-agent-acp`) still work. Don't carry
+  over `stylelint`, `js-beautify` and `marked` (unused, see the Emacs section)
 - Remove the duplicate global npm tools installed with Homebrew's Node
   (`/opt/homebrew/lib/node_modules`: prettier, pnpm, claude-agent-acp etc.).
   Homebrew's Node itself stays as a `gemini-cli` dependency
 
 ### 2. Daily-use improvements
 
+- Secrets out of `~/.zshenv.local`: everything exported there reaches every
+  process, including AI agents and whatever they run. Fetch secrets on
+  demand instead, with `op read` in a function or `op run --env-file=...`
+  using a file of `op://` references
+- Manage agent config in this repo: `~/.claude/CLAUDE.md`,
+  `~/.claude/settings.json` and `~/.codex/config.toml` if customised. Only
+  those files, not the rest of `~/.claude` (session state)
+- Touch ID for `sudo`: copy `/etc/pam.d/sudo_local.template` to
+  `/etc/pam.d/sudo_local` and uncomment the `pam_tid.so` line (survives
+  macOS updates). Then add it to the bootstrap checklist
+- Gitconfig additions: `core.fsmonitor = true` and
+  `core.untrackedCache = true` (faster `git status` in large repos),
+  `rebase.autoSquash = true`, `push.followTags = true`,
+  `fetch.pruneTags = true`, `tag.sort = version:refname`
+- Faster zsh startup, if new shells feel slow: run the full `compinit` check
+  at most once a day and `compinit -C` otherwise
 - 1Password SSH agent and SSH commit signing. Not urgent, and it touches
   the 1Password app the work setup relies on, so do it when there's time to
   test:
@@ -172,6 +189,8 @@ In priority order.
 
 ### 3. Emacs
 
+- `config.el` sets `user-mail-address`: move it to a machine-local file
+  loaded from `config.el`, as the repo is public
 - Upgrade to Emacs 31.1 (released August 2026; Doom supports and recommends
   it): `emacs-plus@30` → `emacs-plus@31` in the Brewfile. Doom is also
   behind upstream, so do it together with `doom upgrade`. Afterwards:
