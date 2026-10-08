@@ -198,14 +198,14 @@ Apps installed by hand need a one-time
 If macOS blocks the adopt (`chmod ... Operation not permitted`), move the
 app to the Trash and run `brew install --cask <token>` instead; app data in
 `~/Library` is kept.
-`brew bundle cleanup` doesn't report undeclared `mas` apps.
+`brew bundle cleanup` also offers to uninstall undeclared `mas` apps.
 
 - `cask "google-chrome"`
 - `cask "1password"`
-- `cask "wire"` (replaces the App Store copy: delete the App Store app, then
-  install the cask). The message history is already backed up. On hold:
-  Homebrew disabled the `wire` cask on 2026-09-01 (fails Gatekeeper), so keep
-  the App Store copy until the cask is re-enabled
+- `cask "wire"` (replaces the App Store copy and its `mas "Wire"` line:
+  delete the App Store app, then install the cask). The message history is
+  already backed up. On hold: Homebrew disabled the `wire` cask on 2026-09-01
+  (fails Gatekeeper), so keep the App Store copy until the cask is re-enabled
 - `cask "datagrip"`
 - `cask "tailscale-app"` (the installed standalone build, not the App Store
   one)
