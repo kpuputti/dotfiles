@@ -143,9 +143,6 @@ In priority order.
 
 ### 2. Daily-use improvements
 
-- Add CLI tools: `fzf` (Ctrl-T file picker, fzf-tab completion), `zoxide`
-  (replaces the `cd,,,` aliases together with `setopt AUTO_CD`), `delta`
-  (git pager; also `[diff] pager` in the chezmoi config), `bat`
 - 1Password: use its SSH agent and sign commits with SSH
   (`gpg.format = ssh`); the CLI is already installed
 
@@ -175,6 +172,13 @@ In priority order.
   - Markdown preview: `config.el` sets `markdown-command` to pandoc, so the
     `+grip` flag, `grip` (Brewfile) and the `marked`, `js-beautify`,
     `stylelint` npm packages are unused (apheleia formats with prettier)
+- Postgres queries from Emacs instead of DataGrip: `sql-postgres` (psql) for
+  running queries, `\d` for schemas and `\copy ... csv header` for export,
+  plus [sqls](https://github.com/sqls-server/sqls) via `lsp-mode` for
+  table/column completion and `JOIN ... ON` completion (needs foreign keys).
+  Connections in a machine-local file loaded from `config.el`, passwords
+  fetched with `op read` at connect time and passed to both psql and sqls.
+  sqls has no stable release yet; check whether Homebrew packages it
 - `EDITOR`/`core.editor`: `emacsclient -t -a ""` instead of `emacs -nw`,
   to reuse a running Emacs instead of starting Doom each time
 - Doom modules, when there's slack: `(company +childframe)` →
