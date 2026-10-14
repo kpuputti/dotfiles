@@ -99,6 +99,14 @@ requires the 1Password app's CLI integration. Not currently used.
   `colima start --edit`, or `colima delete` (wipes all images, containers and
   volumes) and `colima start` to rebuild it from the template
 
+## Scripts
+
+`scripts/` holds standalone scripts kept for reference. They aren't applied
+by chezmoi or put on `PATH`; run them from the repo.
+
+- `scripts/531/` — prints a 5/3/1 cycle plus deload for pasting into Notes:
+  edit `config.json`, then `node scripts/531/plan.mjs | pbcopy`
+
 ## Terminal projects (`proj`)
 
 `proj` (zsh function) opens a Ghostty window per project, with one tab per
