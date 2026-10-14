@@ -37,7 +37,7 @@ const assistance = (index) =>
   });
 
 const session = (index, lift, { sets, deload }) => {
-  const title = `SESSION ${config.firstSession + index}: ${lift.name.toUpperCase()}`;
+  const title = `SESSION ${index + 1}: ${lift.name.toUpperCase()}`;
   if (deload) {
     return [`${title} (DELOAD)`, 'DATE:', mainSets(lift, sets)].join('\n');
   }
