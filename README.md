@@ -6,11 +6,13 @@ Declarative machine setup, managed with [chezmoi](https://www.chezmoi.io/):
   to `$HOME`
 - **Homebrew packages**: `dot_Brewfile` → `~/.Brewfile`, applied with
   `brew bundle --global`
-- **Language runtimes**: [mise](https://mise.jdx.dev/) (node, terraform)
+- **Language runtimes**: [mise](https://mise.jdx.dev/) (node, terraform, go)
   via `dot_config/mise/config.toml`; per-project versions from
   `.node-version` / `.terraform-version` files
 - **Global npm packages**: `dot_default-npm-packages` →
   `~/.default-npm-packages`, installed by mise into every Node version
+- **gh extensions**: listed in `run_onchange_after_50-gh-extensions.sh`,
+  installed when the list changes and upgraded by topgrade
 - **Emacs**: [Doom Emacs](https://github.com/doomemacs/core) private config
   in `dot_doom.d/` → `~/.doom.d`; Doom itself is an external clone at
   `~/.emacs.d` (not managed here, has its own `.gitignore` for the generated
@@ -90,7 +92,8 @@ requires the 1Password app's CLI integration. Not currently used.
   deletes local branches merged into it, then offers to force-delete
   branches whose upstream is gone (e.g. squash-merged on GitHub)
 - New global CLI tool: add to `dot_Brewfile` (or `dot_default-npm-packages`
-  for npm tools), then `chezmoi apply`
+  for npm tools, `run_onchange_after_50-gh-extensions.sh` for gh
+  extensions), then `chezmoi apply`
 - Emacs: edit `dot_doom.d/`, then `chezmoi apply` (runs `doom sync` when
   `init.el`/`packages.el` changed). `doom upgrade` is deliberately manual —
   it can break the editor, so run it when there's slack to fix fallout

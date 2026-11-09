@@ -2,6 +2,7 @@
 # Loose pins: `mise upgrade` stays within the major without editing this managed file
 node = "24"
 terraform = "1.16"
+go = "1"
 
 [settings]
 # Required since mise 2025.1, otherwise .node-version/.terraform-version files are ignored
