@@ -4,7 +4,8 @@
 # system: macOS updates can be slow and want restarts; handled via System Settings.
 # chezmoi: would `git pull` + apply the dotfiles repo — git is managed manually.
 # containers: re-pulls all local docker images and prunes — too aggressive/slow.
-disable = ["emacs", "system", "chezmoi", "containers"]
+# tailscale: runs `sudo tailscale update`; the standalone app updates itself.
+disable = ["emacs", "system", "chezmoi", "containers", "tailscale"]
 
 # Answer package managers' own prompts (e.g. brew cask "proceed? [y/n]")
 assume_yes = true
