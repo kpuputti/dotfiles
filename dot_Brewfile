@@ -110,6 +110,7 @@ cask "vlc"
 
 # Mac App Store
 mas "1Password for Safari", id: 1569813296
+mas "Developer", id: 640199958
 mas "GarageBand", id: 682658836
 mas "Numbers", id: 361304891
 mas "SponsorBlock", id: 1573461917
