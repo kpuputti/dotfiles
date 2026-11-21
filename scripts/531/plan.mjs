@@ -7,63 +7,71 @@ const weeks = [
   { sets: [[65, '5'], [75, '5'], [85, '5+']] },
   { sets: [[70, '3'], [80, '3'], [90, '3+']] },
   { sets: [[75, '5'], [85, '3'], [95, '1+']] },
-  { sets: [[40, '5'], [50, '5'], [60, '5']], deload: true },
 ];
 
-const weight = (tm, percent) =>
-  `${Math.round((tm * percent) / 100 / config.rounding) * config.rounding}${config.unit}`;
+const assistanceLabels = { singleLeg: 'Single Leg', pull: 'Pull', push: 'Push', core: 'Core' };
+
+const weight = (lift, percent) => {
+  const rounding = lift.rounding ?? 2.5;
+  return `${Math.round((lift.tm * percent) / 100 / rounding) * rounding}kg`;
+};
 
 const mainSets = (lift, sets) =>
-  `${lift.short} ${sets.map(([percent, reps]) => `${weight(lift.tm, percent)} ×${reps}`).join(', ')}:`;
+  `${lift.short} ${sets.map(([percent, reps]) => `${weight(lift, percent)} ×${reps}`).join(', ')}:`;
 
 const supplemental = (lift, sets) => {
   switch (lift.supplemental) {
     case 'fsl':
-      return [`${lift.short} FSL ${weight(lift.tm, sets[0][0])} ${config.fsl.sets}:`];
+      return [`${lift.short} FSL ${weight(lift, sets[0][0])} ${config.fsl.sets}:`];
     case 'bbb':
-      return [`${lift.short} BBB ${weight(lift.tm, config.bbb.percent)} ${config.bbb.sets}:`];
+      return [`${lift.short} BBB ${weight(lift, config.bbb.percent)} ${config.bbb.sets}:`];
     default:
       return [];
   }
 };
 
-// Array entries alternate by session; options rotate each time their entry is used.
-const assistance = (index) =>
-  config.assistance.map((entry) => {
-    const entries = Array.isArray(entry) ? entry : [entry];
-    const { label, reps, options } = entries[index % entries.length];
-    const turn = Math.floor(index / entries.length);
-    return `${label} [${options[turn % options.length]}] ${reps}:`;
+const assistance = (lift) =>
+  Object.entries(assistanceLabels).flatMap(([key, label]) => {
+    const group = lift.assistance?.[key];
+    if (!group) return [];
+    return [`${label} ${group.reps}:`, ...group.exercises.map((exercise) => ` - ${exercise}:`)];
   });
 
-const session = (index, lift, { sets, deload }) => {
-  const title = `SESSION ${index + 1}: ${lift.name.toUpperCase()}`;
-  if (deload) {
-    return [`${title} (DELOAD)`, 'DATE:', mainSets(lift, sets)].join('\n');
-  }
-  const lines = [
-    title,
-    'DATE:',
-    ...lift.before.map((line) => `${line}:`),
-    mainSets(lift, sets),
-    ...supplemental(lift, sets),
-    ...assistance(index),
-    ...lift.after.map((line) => `${line}:`),
-  ];
-  return lines.join('\n');
-};
+const conditioning = (lift) =>
+  lift.conditioning ? `Conditioning: ${lift.conditioning}` : 'Conditioning:';
 
-const plan = weeks.flatMap((week) => config.lifts.map((lift) => ({ lift, week })));
+const session = (lift, sets) => [
+  lift.name.toUpperCase(),
+  'DATE:',
+  'Jumps:',
+  mainSets(lift, sets),
+  ...supplemental(lift, sets),
+  ...assistance(lift),
+  conditioning(lift),
+];
+
+const deloadSession = (lifts) => [
+  `${lifts.map((lift) => lift.name.toUpperCase()).join(' / ')} (DELOAD)`,
+  'DATE:',
+  ...lifts.map((lift) => `${lift.short} work up to ${lift.tm}kg ×1:`),
+];
+
+// Deload: the first two lifts get their own session, the rest share one.
+const [firstLift, secondLift, ...otherLifts] = config.lifts;
+
+const sessions = [
+  ...weeks.flatMap(({ sets }) => config.lifts.map((lift) => session(lift, sets))),
+  ...[[firstLift], [secondLift], otherLifts].map(deloadSession),
+];
 
 const trainingMaxes = [
   'TRAINING MAXES',
-  ...config.lifts.map((lift) => `${lift.name}: ${lift.tm}${config.unit}`),
+  ...config.lifts.map((lift) => `${lift.name}: ${lift.tm}kg`),
 ].join('\n');
 
 console.log(
   [
-    JSON.stringify(config),
     trainingMaxes,
-    ...plan.map(({ lift, week }, i) => session(i, lift, week)),
+    ...sessions.map(([title, ...lines], i) => [`SESSION ${i + 1}: ${title}`, ...lines].join('\n')),
   ].join('\n\n'),
 );
