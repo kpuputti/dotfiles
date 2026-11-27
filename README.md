@@ -259,3 +259,35 @@ app to the Trash and run `brew install --cask <token>` instead; app data in
 - `cask "tailscale-app"` (the installed standalone build, not the App Store
   one)
 - Not declarable: Chrome and Firefox extensions (use browser sync)
+
+### 5. Personal machine profile
+
+For a light personal laptop (8 GB RAM, 256 GB SSD) used for browsing,
+Doom Emacs and small Claude Code experiments. Do it when that machine
+arrives. As is, the setup would hurt it: the Colima template asks for 16 GB
+memory and 8 CPUs, and the brew service starts that VM at every login.
+
+- Add a `work` flag to `.chezmoi.toml.tmpl`, asked once per machine:
+  `work = {{ promptBoolOnce . "work" "Work machine" }}` under `[data]`. The
+  existing work machine answers yes
+- Make these work-only (`{{ if .work }}`), keeping everything else
+  everywhere, Doom Emacs and Wire included:
+  - Brewfile (rename to `dot_Brewfile.tmpl`): `colima`, `docker`,
+    `docker-compose`, `docker-buildx`, `docker-credential-helper`,
+    `kubernetes-cli`, `libpq`, `gcloud-cli`, `ngrok`, `duckdb`,
+    `gemini-cli`, `codex`, `google-chrome@canary`, `mas "Developer"`
+  - mise config: `terraform` and `go`
+  - `.chezmoiignore`: `.colima` and `.docker`
+  - `dot_zshrc`: the gcloud completion `source` and `PATH` lines. The
+    `source` errors in every new shell when gcloud isn't installed
+  - `dot_zprofile`: the libpq `PATH` line
+- Run scripts: hash the rendered files with `includeTemplate` instead of
+  `include`, so changing the flag re-runs `brew bundle` and `mise install`
+- Doom: `lsp-clients-typescript-max-ts-server-memory` is 8192, all of the
+  machine's RAM. Read a lower value (2048–3072) from a machine-local file
+  rather than templating `config.el`
+- `brew bundle cleanup` in `update` offers to uninstall anything installed
+  by hand that the Brewfile doesn't declare, so expect prompts for
+  experiments on that machine
+- First `chezmoi apply` is slow there: emacs-plus may build from source and
+  Doom compiles all packages to native code
